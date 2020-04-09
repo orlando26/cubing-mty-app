@@ -1,0 +1,17 @@
+ion-content.background{
+    --background: url(../../../assets/img/background4.jpg); 
+}
+
+.bg-transparent {
+    background: transparent;
+  }
+
+  :host {
+    ion-item {
+        --border-color: white !important; // default underline color
+        --highlight-color-invalid: red; // invalid underline color
+        --highlight-color-valid: green; // valid underline color
+        --highlight-color-focused: white;
+        --color-focused: white;
+    }
+}
