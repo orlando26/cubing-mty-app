@@ -5,5 +5,21 @@
 </ion-header>
 
 <ion-content>
+  <ion-item>
+    <ion-label>Cube</ion-label>
+    <ion-select (ionChange)="nextScramble()" [(ngModel)]="selectedCube"  placeholder="3x3x3"> 
+      <ion-select-option *ngFor="let cube of cubesList"  [value]="cube">{{cube}}</ion-select-option>
+    </ion-select>
+  </ion-item>
 
+
+  <ion-card (click)="nextScramble()" >
+    <ion-card-header>
+      <ion-card-subtitle>Scramble</ion-card-subtitle>
+      <ion-card-title>{{scramble.rawSequence}}</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

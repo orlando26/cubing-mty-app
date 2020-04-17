@@ -1,5 +1,14 @@
-ion-content.background{
-    --background: url(../../../assets/img/background4.jpg); 
+ion-content.background-01{
+    --background: url(../../../assets/img/background4.jpg) 0 0/100% 100% no-repeat; 
+}
+ion-content.background-02{
+    --background: url(../../../assets/img/background1.jpg) 0 0/100% 100% no-repeat; 
+}
+ion-content.background-03{
+    --background: url(../../../assets/img/background2.jpg) 0 0/100% 100% no-repeat; 
+}
+ion-content.background-04{
+    --background: url(../../../assets/img/background3.jpg) 0 0/100% 100% no-repeat; 
 }
 
 .bg-transparent {
