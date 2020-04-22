@@ -1,24 +1,23 @@
-
 <ion-content [class]="className">
-  <div style="width: 65%;margin-top: 10vh;margin-left: auto;margin-right: auto;">
-    <ion-img style="opacity: 0.65;" src="assets/img/cubingmty-logo.png"></ion-img>
-    
-    <ion-list class="bg-transparent" style="padding-top: 4em;">
-      <ion-item color="none">
-        <ion-label color="light" position="floating">Usuario</ion-label>
-        <ion-input color="light"></ion-input>
-      </ion-item>
-      
-      <ion-item color="none">
-        <ion-label color="light" position="floating">Password</ion-label>
-        <ion-input color="light"></ion-input>
-      </ion-item>
-           
-    </ion-list>
+    <div style="width: 65%;margin-top: 10vh;margin-left: auto;margin-right: auto;">
+        <ion-img style="opacity: 0.65;" src="assets/img/cubingmty-logo.png"></ion-img>
 
-    <ion-button shape="round" expand="block" color="dark" routerLink="/home">Login</ion-button>
+        <ion-list class="bg-transparent" style="padding-top: 4em;">
+            <ion-item color="none">
+                <ion-label color="light" position="floating">Usuario</ion-label>
+                <ion-input color="light"></ion-input>
+            </ion-item>
 
-    <ion-button shape="round" expand="block" color="dark" routerLink="/register">Registrar</ion-button>
-    
-  </div>
+            <ion-item color="none">
+                <ion-label color="light" position="floating">Password</ion-label>
+                <ion-input color="light"></ion-input>
+            </ion-item>
+
+        </ion-list>
+
+        <ion-button shape="round" expand="block" color="btn_bg_unselected" routerLink="/home">ENTRAR</ion-button>
+
+        <ion-label color="theme_url" routerLink="/register">Regístrate</ion-label>
+
+    </div>
 </ion-content>
