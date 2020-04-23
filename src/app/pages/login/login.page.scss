@@ -1,24 +1,45 @@
 ion-content.background-01 {
-    --background: url(../../../assets/img/background4.jpg) no-repeat center center / cover;
-}
-
-ion-content.background-02 {
-    --background: url(../../../assets/img/background1.jpg) 0 0/100% 100% no-repeat;
-}
-
-ion-content.background-03 {
-    --background: url(../../../assets/img/background2.jpg) 0 0/100% 100% no-repeat;
-}
-
-ion-content.background-04 {
-    --background: url(../../../assets/img/background3.jpg) 0 0/100% 100% no-repeat;
+    --background: url(../../../assets/img/bg_img_login_blur_dark.jpg) no-repeat center center / cover;
 }
 
 .bg-transparent {
     background: transparent;
 }
 
- :host {
+ion-label.login_entry {
+    color: rgb(255, 255, 255);
+    text-shadow: none;
+    border: none;
+}
+
+ion-item.login_entry {
+    color: rgb(255, 255, 255);
+    background-color: rgba(220, 220, 220, 0.1);
+    border-radius: 0.35em;
+    margin-top: 1em;
+    text-shadow: none;
+}
+
+ion-button.login_btn {
+    margin-top: 3em;
+    color: rgb(255, 255, 255);
+    height: 3em;
+}
+
+ion-label.signUp_empty {
+    font-size: 0.8em;
+    color: var(--ion-color-light);
+}
+
+ion-label.signUp_click {
+    font-size: 0.8em;
+    color: var(--ion-color-primary-tint);
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+}
+
+:host {
     ion-item {
         --border-color: white !important; // default underline color
         --highlight-color-invalid: red; // invalid underline color

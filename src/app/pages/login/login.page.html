@@ -1,23 +1,33 @@
 <ion-content [class]="className">
-    <div style="width: 65%;margin-top: 10vh;margin-left: auto;margin-right: auto;">
-        <ion-img style="opacity: 0.65;" src="assets/img/cubingmty-logo.png"></ion-img>
+    <div style="width: 70%; margin-top: 5vh;margin-left: auto; margin-right: auto;">
+        <ion-img style="opacity: 1;" src="assets/img/cubingmty_logo_02.png"></ion-img>
 
-        <ion-list class="bg-transparent" style="padding-top: 4em;">
-            <ion-item color="none">
-                <ion-label color="light" position="floating">Usuario</ion-label>
-                <ion-input color="light"></ion-input>
+        <ion-list lines="none" class="bg-transparent" style="padding-top: 0.5em;">
+            <ion-item class="login_entry" color="transparent" lines="none">
+                <ion-label class="login_entry" position="floating">Usuario</ion-label>
+                <ion-input></ion-input>
             </ion-item>
 
-            <ion-item color="none">
-                <ion-label color="light" position="floating">Password</ion-label>
-                <ion-input color="light"></ion-input>
+            <ion-item class="login_entry" color="transparent" lines="none">
+                <ion-label class="login_entry" position="floating">Contraseña</ion-label>
+                <ion-input type="Password" clearOnEdit="true"></ion-input>
+                <!-- <button (click)="managePassword()" ion-button clear small item-end icon-only>
+                  <ion-icon [name]="eye"></ion-icon>
+                </button> -->
             </ion-item>
-
         </ion-list>
 
-        <ion-button shape="round" expand="block" color="btn_bg_unselected" routerLink="/home">ENTRAR</ion-button>
+        <ion-button class="login_btn" shape="rectangle" expand="block" routerLink="/home">ENTRAR</ion-button>
 
-        <ion-label color="theme_url" routerLink="/register">Regístrate</ion-label>
+        <ion-item text-center color="transparent" lines="none">
+            <ion-col>
+                <ion-label class="signUp_empty">¿No tienes cuenta?</ion-label>
+            </ion-col>
+            <ion-col>
+                <ion-label class="signUp_click" routerLink="/register">Regístrate aquí</ion-label>
+            </ion-col>
+        </ion-item>
+
 
     </div>
 </ion-content>
