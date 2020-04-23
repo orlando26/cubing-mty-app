@@ -1,0 +1,51 @@
+ion-content.background_sign {
+    --background: url(../../../assets/img/bg_img_login_blur_dark.jpg) no-repeat center center / cover;
+}
+
+.bg-transparent {
+    background: transparent;
+}
+
+$this_radius: 0.5em;
+ion-label.signup_entry {
+    color: rgb(255, 255, 255);
+    text-shadow: none;
+    border: none;
+}
+
+ion-item.signup_entry {
+    color: rgb(255, 255, 255);
+    background-color: rgba(220, 220, 220, 0.1);
+    border-radius: $this_radius;
+    margin-top: 1em;
+    text-shadow: none;
+}
+
+ion-button.signup_btn {
+    margin-top: 1.5em;
+    color: rgb(255, 255, 255);
+    height: 3em;
+    border-radius: $this_radius;
+}
+
+ion-label.back_click {
+    font-size: 0.9em;
+    color: var(--ion-color-primary-tint);
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+}
+
+ion-icon.rowIcon {
+    margin-top: 0.8em; // Workaround, don't know why 'vertical-align: middle' won't work :/
+}
+
+:host {
+    ion-item {
+        --border-color: white !important; // default underline color
+        --highlight-color-invalid: red; // invalid underline color
+        --highlight-color-valid: green; // valid underline color
+        --highlight-color-focused: white;
+        --color-focused: white;
+    }
+}

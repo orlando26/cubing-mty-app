@@ -1,39 +1,41 @@
+<ion-content [class]="pagesSign">
+    <div style="width: 70%; margin-left: auto; margin-right: auto;">
+        <ion-img style="opacity: 1;" src="assets/img/cubingmty_logo_signUp.png"></ion-img>
 
-<ion-content >
-  <ion-card>
-    <ion-card-header>
-      <ion-card-subtitle>Cubing MTY</ion-card-subtitle>
-      <ion-card-title>Registro</ion-card-title>
-    </ion-card-header>
-  
-    <ion-card-content>
-      <ion-list>
-        <ion-item>
-          <ion-label position="floating">Nombre</ion-label>
-          <ion-input></ion-input>
+        <ion-list lines="none" class="bg-transparent">
+            <ion-item class="signup_entry" color="transparent" lines="none">
+                <ion-label class="signup_entry" position="floating">Nombres</ion-label>
+                <ion-input></ion-input>
+            </ion-item>
+
+            <ion-item class="signup_entry" color="transparent" lines="none">
+                <ion-label class="signup_entry" position="floating">Apellidos</ion-label>
+                <ion-input></ion-input>
+            </ion-item>
+
+            <ion-item class="signup_entry" color="transparent" lines="none">
+                <ion-label class="signup_entry" position="floating">WCA id</ion-label>
+                <ion-input></ion-input>
+            </ion-item>
+
+            <ion-item class="signup_entry" color="transparent" lines="none">
+                <ion-label class="signup_entry" position="floating">Correo</ion-label>
+                <ion-input></ion-input>
+            </ion-item>
+
+            <ion-item class="signup_entry" color="transparent" lines="none">
+                <ion-label class="signup_entry" position="floating">Contraseña</ion-label>
+                <ion-input name="password" [type]="showPassword ? 'text' : 'password'" clearOnEdit="true"></ion-input>
+                <ion-icon class="rowIcon" slot="end" [name]="passwordToggleIcon" (click)="togglePassword()"></ion-icon>
+            </ion-item>
+        </ion-list>
+
+        <ion-button class="signup_btn" shape="rectangle" expand="block">ENVIAR</ion-button>
+
+        <ion-item text-center color="transparent" lines="none">
+            <ion-col>
+                <ion-label class="back_click" routerLink="/">Regresar</ion-label>
+            </ion-col>
         </ion-item>
-        
-        <ion-item>
-          <ion-label position="floating">Correo</ion-label>
-          <ion-input></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="floating">WCA id</ion-label>
-          <ion-input></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="floating">Password</ion-label>
-          <ion-input></ion-input>
-        </ion-item>
-
-             
-      </ion-list>
-
-      <ion-button shape="round" expand="block" color="dark">Registrar</ion-button>
-
-      <ion-button shape="round" expand="block" color="dark" routerLink="/">Regresar</ion-button>
-    </ion-card-content>
-  </ion-card>
+    </div>
 </ion-content>
