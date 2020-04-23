@@ -39,6 +39,10 @@ ion-label.signUp_click {
     width: 100%;
 }
 
+ion-icon.rowIcon {
+    margin-top: 0.8em; // Workaround, don't know why 'vertical-align: middle' won't work :/
+}
+
 :host {
     ion-item {
         --border-color: white !important; // default underline color

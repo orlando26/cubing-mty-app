@@ -8,6 +8,19 @@ import { Component, OnInit } from '@angular/core';
 export class LoginPage implements OnInit {
   images: string[] = ['background-01', 'background-02', 'background-03', 'background-04']
   className: string = this.images[0];
+
+  showPassword = false;
+  passwordToggleIcon = 'eye';
+  togglePassword():void{
+    this.showPassword = !this.showPassword;
+    
+    if(this.passwordToggleIcon == 'eye'){
+      this.passwordToggleIcon = 'eye-off';
+    }else{
+      this.passwordToggleIcon = 'eye';
+    }
+  }
+ 
   constructor() { }
 
   ngOnInit() {
@@ -17,6 +30,5 @@ export class LoginPage implements OnInit {
    
   }
 
- 
 
 }

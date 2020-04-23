@@ -10,11 +10,10 @@
 
             <ion-item class="login_entry" color="transparent" lines="none">
                 <ion-label class="login_entry" position="floating">Contraseña</ion-label>
-                <ion-input type="Password" clearOnEdit="true"></ion-input>
-                <!-- <button (click)="managePassword()" ion-button clear small item-end icon-only>
-                  <ion-icon [name]="eye"></ion-icon>
-                </button> -->
+                <ion-input name="password" [type]="showPassword ? 'text' : 'password'" clearOnEdit="true"></ion-input>
+                <ion-icon class="rowIcon" slot="end" [name]="passwordToggleIcon" (click)="togglePassword()"></ion-icon>
             </ion-item>
+
         </ion-list>
 
         <ion-button class="login_btn" shape="rectangle" expand="block" routerLink="/home">ENTRAR</ion-button>
