@@ -1,33 +1,46 @@
-<ion-content [class]="className">
-    <div style="width: 70%; margin-top: 5vh;margin-left: auto; margin-right: auto;">
-        <ion-img style="opacity: 1;" src="assets/img/cubingmty_logo_02.png"></ion-img>
+<ion-content [class]="pagesSign">
+    <div style="width: 80%; margin-left: auto; margin-right: auto;">
+        <ion-img style="height: 27vh; margin-left: auto; margin-right: auto; margin-top: 7vh" src="assets/img/cubingmty_logo_signUp.png"></ion-img>
 
-        <ion-list lines="none" class="bg-transparent" style="padding-top: 0.5em;">
-            <ion-item class="login_entry" color="transparent" lines="none">
-                <ion-label class="login_entry" position="floating">Usuario</ion-label>
-                <ion-input></ion-input>
-            </ion-item>
+        <ion-grid style="width: 100%; margin-top: 7vh;">
+            <ion-row>
+                <ion-col>
+                    <ion-item class="login_entry" color="transparent" lines="none">
+                        <ion-icon slot="start" class="leftIcon" name="at"></ion-icon>
+                        <ion-input placeholder="Usuario" [(ngModel)]="nickname" name="nickname" clearOnEdit="true" onkeyup="this.value = this.value.replace(/[^a-z, ^0-9]/, '')" type="text"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
 
-            <ion-item class="login_entry" color="transparent" lines="none">
-                <ion-label class="login_entry" position="floating">Contraseña</ion-label>
-                <ion-input type="Password" clearOnEdit="true"></ion-input>
-                <!-- <button (click)="managePassword()" ion-button clear small item-end icon-only>
-                  <ion-icon [name]="eye"></ion-icon>
-                </button> -->
-            </ion-item>
-        </ion-list>
+            <ion-row>
+                <ion-col>
+                    <ion-item class="login_entry" color="transparent" lines="none">
+                        <ion-icon slot="start" class="leftIcon" name="key-sharp"></ion-icon>
+                        <ion-input placeholder="Contraseña" [(ngModel)]="password" name="password" clearOnEdit="true" onkeyup="this.value = this.value.replace(/[^a-z, ^0-9]/, '')" [type]="showPassword ? 'text' : 'password'"></ion-input>
+                        <ion-icon slot="end" class="rightIcon" [name]="passwordToggleIcon" (click)="togglePassword()"></ion-icon>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
 
-        <ion-button class="login_btn" shape="rectangle" expand="block" routerLink="/home">ENTRAR</ion-button>
+            <ion-row>
+                <ion-col>
+                    <ion-button class="login_btn" shape="rectangle" expand="block" (click)="getCredentials()">ENTRAR</ion-button>
+                </ion-col>
+            </ion-row>
 
-        <ion-item text-center color="transparent" lines="none">
-            <ion-col>
-                <ion-label class="signUp_empty">¿No tienes cuenta?</ion-label>
-            </ion-col>
-            <ion-col>
-                <ion-label class="signUp_click" routerLink="/register">Regístrate aquí</ion-label>
-            </ion-col>
-        </ion-item>
-
+            <ion-row>
+                <ion-col>
+                    <ion-item text-center color="transparent" lines="none">
+                        <ion-col style="text-align: right">
+                            <ion-label class="signUp_empty">¿No tienes cuenta?</ion-label>
+                        </ion-col>
+                        <ion-col style="text-align: left">
+                            <ion-label class="signUp_click" routerLink="/register">Regístrate aquí</ion-label>
+                        </ion-col>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
 
     </div>
 </ion-content>

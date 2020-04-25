@@ -8,24 +8,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cubing.page.scss'],
 })
 export class CubingPage implements OnInit {
- 
-  cubesList:string[] = [];
 
-  contentBg = "yellow-bg";
+  time = '00.00.00';
 
-  text1 = "Best: N/A\nAVG 5: N/A\nAVG 12: N/A\nAVG 50: N/A"
+  timer: any;
 
-  text2 = "Worst: N/A\nAVG 100: N/A\nAVG 1000: N/A\nSolves: N/A"
+  cubesList: string[] = [];
 
-  scramble:Scramble= {
+  contentBg = 'yellow-bg';
+
+  text1 = 'Best: N/A\nAVG 5: N/A\nAVG 12: N/A\nAVG 50: N/A';
+
+  text2 = 'Worst: N/A\nAVG 100: N/A\nAVG 1000: N/A\nSolves: N/A';
+
+  scramble: Scramble = {
     sequence: [],
     rawSequence: '',
     scramblerId: ''
   };
 
-  selectedCube:string = "3x3x3";   
+  selectedCube = '3x3x3';
 
-  constructor(private catalogsApi: CatalogsService, private scrambleApi: ScrambleService) { } 
+  constructor(private catalogsApi: CatalogsService, private scrambleApi: ScrambleService) { }
 
   ngOnInit() {
     this.catalogsApi.getCubesList().subscribe(
@@ -35,7 +39,11 @@ export class CubingPage implements OnInit {
     );
   }
 
-  ionViewWillEnter(){
+  ionViewWillEnter() {
+    this.nextScramble();
+  }
+
+  nextScramble() {
     this.scrambleApi.getScramble(this.selectedCube).subscribe(
       res => {
         this.scramble = res;
@@ -43,18 +51,37 @@ export class CubingPage implements OnInit {
     );
   }
 
-  nextScramble(){
-    this.ionViewWillEnter();
+  startTimer() {
+    this.nextScramble();
+
+    const t0 = performance.now();
+
+    this.timer = setInterval( () => {
+      const dif = performance.now() - t0;
+
+      const seconds = Math.floor((dif / 1000) % 60);
+      const minutes = Math.floor((dif / 1000 / 60) % 60);
+      const ms = Math.floor(dif % 1000);
+
+      const secondsStr = seconds < 10 ? ('0' + seconds) : seconds;
+      const minutesStr = minutes < 10 ? ('0' + minutes) : minutes;
+      const msStr = ms < 100 ? (ms < 10 ? ('00' + ms) : ('0' + ms))  : ms;
+
+      this.time = minutesStr + ':' + secondsStr + '.' + msStr;
+    }, 10);
   }
 
-  ready(){
+  ready() {
     console.log('ready...');
     document.body.style.setProperty('--my-var', 'var(--ion-color-success)');
   }
 
-  stopTimer(){
+  stopTimer() {
     console.log('stop...');
     document.body.style.setProperty('--my-var', 'var(--ion-color-danger)');
+
+    clearInterval(this.timer);
+    this.nextScramble();
   }
 
 }
