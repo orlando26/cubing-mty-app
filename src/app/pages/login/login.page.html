@@ -7,7 +7,7 @@
                 <ion-col>
                     <ion-item class="login_entry" color="transparent" lines="none">
                         <ion-icon slot="start" class="leftIcon" name="at"></ion-icon>
-                        <ion-input name="username" placeholder="Usuario" clearOnEdit="true"></ion-input>
+                        <ion-input placeholder="Usuario" [(ngModel)]="nickname" name="nickname" clearOnEdit="true" type="text"></ion-input>
                     </ion-item>
                 </ion-col>
             </ion-row>
@@ -15,16 +15,16 @@
             <ion-row>
                 <ion-col>
                     <ion-item class="login_entry" color="transparent" lines="none">
-                        <ion-icon class="leftIcon" name="key-sharp" slot="start"></ion-icon>
-                        <ion-input name="password" placeholder="Contraseña" [type]="showPassword ? 'text' : 'password'" clearOnEdit="true"></ion-input>
-                        <ion-icon class="rightIcon" slot="end" [name]="passwordToggleIcon" (click)="togglePassword()"></ion-icon>
+                        <ion-icon slot="start" class="leftIcon" name="key-sharp"></ion-icon>
+                        <ion-input placeholder="Contraseña" [(ngModel)]="password" name="password" clearOnEdit="true" [type]="showPassword ? 'text' : 'password'"></ion-input>
+                        <ion-icon slot="end" class="rightIcon" [name]="passwordToggleIcon" (click)="togglePassword()"></ion-icon>
                     </ion-item>
                 </ion-col>
             </ion-row>
 
             <ion-row>
                 <ion-col>
-                    <ion-button class="login_btn" shape="rectangle" expand="block" routerLink="/home">ENTRAR</ion-button>
+                    <ion-button class="login_btn" shape="rectangle" expand="block" (click)="getCredentials()">ENTRAR</ion-button>
                 </ion-col>
             </ion-row>
 

@@ -7,7 +7,7 @@
                 <ion-col>
                     <ion-item class="signup_entry" color="transparent" lines="none">
                         <ion-icon slot="start" class="leftIcon" name="person-sharp"></ion-icon>
-                        <ion-input name="names" placeholder="Nombres" clearOnEdit="false"></ion-input>
+                        <ion-input placeholder="Nombres" type="text" minLength="3" clearOnEdit="false" [(ngModel)]="myVal"></ion-input>
                     </ion-item>
                 </ion-col>
                 <ion-col>
@@ -26,7 +26,7 @@
                 </ion-col>
                 <ion-col>
                     <ion-item class="signup_entry" color="transparent" lines="none">
-                        <ion-icon class="leftIcon" name="at-circle" slot="start"></ion-icon>
+                        <ion-icon class="leftIcon" name="at" slot="start"></ion-icon>
                         <ion-input name="names" placeholder="User Name" clearOnEdit="Apellidos"></ion-input>
                     </ion-item>
                 </ion-col>

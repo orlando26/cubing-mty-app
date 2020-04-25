@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { RegisterPage } from '../register/register.page';
 
 @Component({
   selector: 'app-login',
@@ -16,12 +18,26 @@ export class LoginPage implements OnInit {
     
     if(this.passwordToggleIcon == 'eye'){
       this.passwordToggleIcon = 'eye-off';
+      
     }else{
       this.passwordToggleIcon = 'eye';
     }
   }
+
+  nickname = '';
+  password = '';
+  getCredentials(){
+    if(this.nickname && this.password){
+      console.log("nickname:" + this.nickname);
+      console.log("password:" + this.password);
+      this.router.navigateByUrl('/home');
+    }else{
+      console.log("Empty fields");
+      alert('Por favor llena todos los campos v:');
+    }
+  }
  
-  constructor() { }
+  constructor(private router: Router) {}
 
   ngOnInit() {
   }
