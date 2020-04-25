@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { RegisterPage } from '../register/register.page';
 import { ToastController } from '@ionic/angular';
 
 @Component({
