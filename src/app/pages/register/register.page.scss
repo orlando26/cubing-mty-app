@@ -23,6 +23,15 @@ ion-item.signup_entry {
     text-shadow: none;
 }
 
+ion-item.address_entry {
+    color: rgb(255, 255, 255);
+    background-color: rgba(220, 220, 220, 0.1);
+    border-radius: $this_radius;
+    padding: 0;
+    margin-top: 0;
+    text-shadow: none;
+}
+
 ion-button.signup_btn {
     margin-top: 1vh;
     color: rgb(255, 255, 255);
@@ -44,9 +53,17 @@ ion-icon.leftIcon {
     margin-right: 2vh;
 }
 
+ion-datetime,
 ion-input {
     padding: 0;
     height: 1vm;
+}
+
+ion-select {
+    padding: 0;
+    height: 1vm;
+    width: 50%;
+    margin-inline-end: 3vw;
 }
 
 :host {
