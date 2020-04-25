@@ -1,39 +1,93 @@
+<ion-content [class]="pagesSign" style="display: flex; align-items:center;">
+    <div style="width: 85%; margin-left: auto; margin-right: auto;">
+        <ion-img style="height: 22vh; margin-left: auto; margin-right: auto;" src="assets/img/cubingmty_logo_signUp.png"></ion-img>
 
-<ion-content >
-  <ion-card>
-    <ion-card-header>
-      <ion-card-subtitle>Cubing MTY</ion-card-subtitle>
-      <ion-card-title>Registro</ion-card-title>
-    </ion-card-header>
-  
-    <ion-card-content>
-      <ion-list>
-        <ion-item>
-          <ion-label position="floating">Nombre</ion-label>
-          <ion-input></ion-input>
-        </ion-item>
-        
-        <ion-item>
-          <ion-label position="floating">Correo</ion-label>
-          <ion-input></ion-input>
-        </ion-item>
+        <ion-grid style="width: 100%; margin-top: 1vh;">
+            <ion-row>
+                <ion-col>
+                    <ion-item class="signup_entry" color="transparent" lines="none">
+                        <ion-icon slot="start" class="leftIcon" name="person-sharp"></ion-icon>
+                        <ion-input placeholder="Nombres" [(ngModel)]="firstName" name="firstName" clearOnEdit="false" onkeyup="this.value = this.value.replace(/[^a-z, ^A-Z ' ']/, '')" type="text"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col>
+                    <ion-item class="signup_entry" color="transparent" lines="none">
+                        <ion-input placeholder="Apellidos" [(ngModel)]="lastName" name="lastName" clearOnEdit="false" onkeyup="this.value = this.value.replace(/[^a-z, ^A-Z, ' ']/, '')" type="text"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
 
-        <ion-item>
-          <ion-label position="floating">WCA id</ion-label>
-          <ion-input></ion-input>
-        </ion-item>
+            <ion-row>
+                <ion-col>
+                    <ion-item class="signup_entry" color="transparent" lines="none">
+                        <ion-icon slot="start" class="leftIcon" name="cube"></ion-icon>
+                        <ion-input placeholder="WCA ID" [(ngModel)]="wcaid" name="wcaid" clearOnEdit="false" onkeyup="this.value = this.value.replace(/[^a-z, ^A-Z, ^0-9]/, '')" maxlength="10" type="text"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col>
+                    <ion-item class="signup_entry" color="transparent" lines="none">
+                        <ion-icon slot="start" class="leftIcon" name="at"></ion-icon>
+                        <ion-input placeholder="Usuario" [(ngModel)]="nickname" name="nickname" clearOnEdit="false" onkeyup="this.value = this.value.replace(/[^a-z, ^0-9]/, '')" maxlength="15" type="text"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
 
-        <ion-item>
-          <ion-label position="floating">Password</ion-label>
-          <ion-input></ion-input>
-        </ion-item>
+            <ion-row>
+                <ion-col>
+                    <ion-item class="signup_entry" color="transparent" lines="none">
+                        <ion-icon slot="start" class="leftIcon" name="mail"></ion-icon>
+                        <ion-input placeholder="Correo" [(ngModel)]="email" name="email" clearOnEdit="false" type="text"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
 
-             
-      </ion-list>
+            <ion-row>
+                <ion-col>
+                    <ion-item class="signup_entry" color="transparent" lines="none">
+                        <ion-icon slot="start" class="leftIcon" name="key-sharp"></ion-icon>
+                        <ion-input placeholder="Contraseña" [(ngModel)]="password" name="password" clearOnEdit="true" onkeyup="this.value = this.value.replace(/[^a-z, ^0-9]/, '')" [type]="showPassword ? 'text' : 'password'"></ion-input>
+                        <ion-icon slot="end" class="rightIcon" [name]="passwordToggleIcon" (click)="togglePassword()"></ion-icon>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
 
-      <ion-button shape="round" expand="block" color="dark">Registrar</ion-button>
+            <ion-row>
+                <ion-col>
+                    <ion-item class="address_entry" color="transparent" lines="none">
+                        <ion-icon slot="start" class="leftIcon" name="location-sharp"></ion-icon>
+                        <ion-select placeholder="Estado" [(ngModel)]="addressState" name="addressState" clearOnEdit="false">
+                            <ion-select-option value="Estado 1">Estado 1</ion-select-option>
+                            <ion-select-option value="Estado 2">Estado 2</ion-select-option>
+                        </ion-select>
 
-      <ion-button shape="round" expand="block" color="dark" routerLink="/">Regresar</ion-button>
-    </ion-card-content>
-  </ion-card>
+                        <ion-select placeholder="Municipio" [(ngModel)]="addressCity" name="addressCity" clearOnEdit="false">
+                            <ion-select-option value="Municipio 1">Municipio 1</ion-select-option>
+                            <ion-select-option value="Municipio 2">Municipio 2</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col>
+                    <ion-item class="signup_entry" color="transparent" lines="none">
+                        <ion-icon slot="start" class="leftIcon" name="calendar-outline"></ion-icon>
+                        <ion-datetime placeholder="Fecha de Nacimiento" [(ngModel)]="birthDate" name="birthDate" clearOnEdit="false" displayFormat="DD/MM/YYYY"></ion-datetime>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col>
+                    <ion-button class="signup_btn" shape="rectangle" expand="block" style="height: 6vh;" (click)="getSignUpForm()">ENVIAR</ion-button>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col style="text-align: center;">
+                    <ion-label class="back_click" routerLink="/">Regresar</ion-label>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+    </div>
 </ion-content>

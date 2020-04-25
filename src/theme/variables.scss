@@ -189,3 +189,29 @@
         --color: white;
     }
 }
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('../assets/fonts/notosans_regular.ttf'); //mine
+}
+
+* {
+    font-family: 'Noto Sans';
+    font-size: calc(11px + 1vw);
+    // font-size: calc(1.2rem + 0.4vw);
+}
+
+.picker-md .picker-prefix,
+.picker-md .picker-suffix,
+.picker-md .picker-opt.picker-opt-selected {
+    color: var(--ion-color-primary);
+}
+
+.picker-md .picker-opt {
+    color: var(--ion-color-medium-shade);
+}
+
+.picker-md .picker-button,
+.picker-md .picker-button.activated {
+    color: var(--ion-color-primary-shade);
+}
