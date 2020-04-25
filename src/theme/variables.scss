@@ -189,3 +189,14 @@
         --color: white;
     }
 }
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('../assets/fonts/notosans_regular.ttf'); //mine
+}
+
+* {
+    font-family: 'Noto Sans';
+    font-size: calc(11px + 1vw);
+    // font-size: calc(1.2rem + 0.4vw);
+}

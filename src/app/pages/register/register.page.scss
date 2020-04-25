@@ -1,12 +1,13 @@
 ion-content.background_sign {
     --background: url(../../../assets/img/bg_img_login_blur_dark.jpg) no-repeat center center / cover;
+    --overflow: hidden;
 }
 
 .bg-transparent {
     background: transparent;
 }
 
-$this_radius: 0.5em;
+$this_radius: 0.5vh;
 ion-label.signup_entry {
     color: rgb(255, 255, 255);
     text-shadow: none;
@@ -17,27 +18,39 @@ ion-item.signup_entry {
     color: rgb(255, 255, 255);
     background-color: rgba(220, 220, 220, 0.1);
     border-radius: $this_radius;
-    margin-top: 1em;
+    padding: 0;
+    margin-top: 0;
     text-shadow: none;
 }
 
 ion-button.signup_btn {
-    margin-top: 1.5em;
+    margin-top: 1vh;
     color: rgb(255, 255, 255);
-    height: 3em;
+    height: 3vh;
     border-radius: $this_radius;
 }
 
 ion-label.back_click {
-    font-size: 0.9em;
+    font-size: 0.85em;
     color: var(--ion-color-primary-tint);
     text-align: center;
     justify-content: center;
     width: 100%;
 }
 
-ion-icon.rowIcon {
-    margin-top: 0.8em; // Workaround, don't know why 'vertical-align: middle' won't work :/
+ion-icon.rightIcon {
+    margin-right: 1vh;
+}
+
+ion-icon.leftIcon {
+    padding-left: 0;
+    margin-left: -1vh;
+    margin-right: 2vh;
+}
+
+ion-input {
+    padding: 0;
+    height: 1vm;
 }
 
 :host {
