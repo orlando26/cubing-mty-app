@@ -11,7 +11,11 @@ export class CatalogsService {
 
   constructor(private http:HttpClient) { } 
 
-  getCubesList(){
+  getCubesList() {
     return this.http.get<string[]>(this.uri + 'cubes');
+  }
+
+  getStates() {
+
   }
 }
