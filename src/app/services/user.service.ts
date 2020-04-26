@@ -16,6 +16,6 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   saveUser(user: User) {
-    this.http.post(this.uri + 'registration', JSON.stringify(user), this.header);
+    return this.http.post(this.uri + 'registration', JSON.stringify(user), this.header);
   }
 }
