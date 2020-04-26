@@ -1,0 +1,15 @@
+.green-bg{
+    --background: var(--ion-color-success);
+}
+
+.red-bg{
+    --background: var(--ion-color-danger);
+}
+
+.yellow-bg{
+    --background: var(--ion-color-warning);
+}
+
+.white-bg{
+    background-color: white;
+}

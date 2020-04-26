@@ -1,0 +1,70 @@
+ion-content.background_sign {
+    --background: url(../../../assets/img/bg_img_login_blur_dark.jpg) no-repeat center center / cover;
+    --overflow: hidden;
+    // font-size: calc(0.75em + 1vmin);
+    // font-size: calc(1.2rem + 0.4vw);
+}
+
+.bg-transparent {
+    background: transparent;
+}
+
+$this_radius: 0.5vh;
+ion-label.login_entry {
+    color: rgb(255, 255, 255);
+    text-shadow: none;
+    border: none;
+    padding: 0;
+}
+
+ion-item.login_entry {
+    color: rgb(255, 255, 255);
+    background-color: rgba(220, 220, 220, 0.1);
+    border-radius: $this_radius;
+    text-shadow: none;
+    height: 7vh;
+    height: 100%;
+    display: block;
+}
+
+ion-button.login_btn {
+    margin-top: 7vh;
+    color: rgb(255, 255, 255);
+    height: 6vh;
+    border-radius: $this_radius;
+}
+
+ion-label.signUp_empty {
+    font-size: 0.85em;
+    color: var(--ion-color-light);
+}
+
+ion-label.signUp_click {
+    font-size: 0.85em;
+    color: var(--ion-color-primary-tint);
+    width: 100%;
+}
+
+ion-icon.leftIcon {
+    padding-left: 0;
+    margin-left: -1vh;
+    margin-right: 2vh;
+}
+
+ion-input {
+    margin-left: 0;
+}
+
+ion-icon.rightIcon {
+    margin-right: 1vh;
+}
+
+:host {
+    ion-item {
+        --border-color: rgb(31, 24, 24) !important; // default underline color
+        --highlight-color-invalid: red; // invalid underline color
+        --highlight-color-valid: green; // valid underline color
+        --highlight-color-focused: white;
+        --color-focused: white;
+    }
+}

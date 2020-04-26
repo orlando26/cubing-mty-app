@@ -1,0 +1,48 @@
+<ion-header  class="ion-no-border">
+  <ion-toolbar color="dark">
+    <ion-item color="dark">
+      <ion-label>Cube</ion-label>
+      <ion-select (ionChange)="nextScramble()" [(ngModel)]="selectedCube"  placeholder="3x3x3"> 
+        <ion-select-option *ngFor="let cube of cubesList"  [value]="cube">{{cube}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style='--background:var(--my-var)' (click)="stopTimer()" (press)="ready()" (pressup)="startTimer()">
+
+  <div  style="margin: auto;margin-top: 15vh; width: 80%;text-align: center;color: var(--ion-color-light);">
+    <h1 style="font-size: 2.5em;">{{time}}</h1>
+    <span>{{scramble.rawSequence}}</span>
+
+    <br>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button color="dark">+2</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button color="dark">DNF</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button color="dark">Delete</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
+
+<ion-footer style="font-size: small;">
+  <ion-toolbar color="dark">
+    <ion-grid >
+      <ion-row>
+        <ion-col>
+          <pre style="text-align: start;">{{text1}}</pre>
+        </ion-col>
+        <ion-col>
+          <pre style="text-align: end;">{{text2}}</pre>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
