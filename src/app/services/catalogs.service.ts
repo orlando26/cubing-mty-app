@@ -9,9 +9,17 @@ export class CatalogsService {
   private uri = 'http://localhost:8080/catalog/';
 
 
-  constructor(private http:HttpClient) { } 
+  constructor(private http: HttpClient) { }
 
-  getCubesList(){
+  getCubesList() {
     return this.http.get<string[]>(this.uri + 'cubes');
+  }
+
+  getStates() {
+    return this.http.get<State[]>(this.uri + 'states');
+  }
+
+  getCitiesByState(stateId){
+    return this.http.get<City[]>(this.uri + 'citiesByState/' + stateId);
   }
 }

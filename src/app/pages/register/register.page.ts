@@ -1,6 +1,9 @@
+import { ToastService } from '../../services/toast.service';
+import { CatalogsService } from './../../services/catalogs.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { UserService } from 'src/app/services/user.service';
 // import { RegisterPage } from 'src/app/pages/register/register.page'
 
 @Component({
@@ -13,83 +16,82 @@ export class RegisterPage implements OnInit {
   images: string[] = ['background_sign'];
   pagesSign: string = this.images[0];
 
+  states: State[] = [];
+  cities: City[] = [];
+
+  user: User = {
+    name: '',
+    lastname: '',
+    nickname: '',
+    email: '',
+    wcaId: '',
+    stateId: 0,
+    cityId: 0,
+    birthday: '',
+    image: '',
+    password: '',
+    roles: []
+  };
+
+  response: any = {
+    entity: {},
+    status: '',
+    responsetext: ''
+  };
+
   showPassword = false;
   passwordToggleIcon = 'eye';
-  togglePassword():void{
+
+  constructor(private router: Router,
+              public toastService: ToastService,
+              private catatalogsApi: CatalogsService,
+              private userApi: UserService) {}
+
+  ngOnInit() {
+  }
+
+  ionViewWillEnter() {
+   this.catatalogsApi.getStates().subscribe(
+     res => {
+       this.states = res;
+     }
+   );
+  }
+
+  togglePassword(): void {
     this.showPassword = !this.showPassword;
-    
-    if(this.passwordToggleIcon == 'eye'){
+
+    if (this.passwordToggleIcon === 'eye') {
       this.passwordToggleIcon = 'eye-off';
-    }else{
+    } else {
       this.passwordToggleIcon = 'eye';
     }
   }
- 
-  firstName = '';
-  lastName ='';
-  wcaid = '';
-  nickname = '';
-  email = '';
-  password = '';
-  addressState = '';
-  addressCity = '';
-  birthDate = '';
-  getSignUpForm(){
-    if(this.nickname && this.password){
-      console.log("firstName:" + this.firstName);
-      console.log("lastName:" + this.lastName);
-      console.log("wcaid:" + this.wcaid);
-      console.log("nickname:" + this.nickname);
-      console.log("email:" + this.email);
-      console.log("password:" + this.password);
-      console.log("addressState:" + this.addressState);
-      console.log("addressCity:" + this.addressCity);
-      console.log("birthDay:" + this.birthDate);
 
-      console.log("Navigating to / (login)")
-      this.router.navigateByUrl('/');
-    }else{
-      console.log("Empty fields");
-      // alert('Por favor llena todos los campos v:');
-      this.simpleToast();
-    }
-  }
- 
-  async simpleToast(){
-    const toast = await this.toastController.create({
-      message: 'Por favor llena todos los campos v:',
-      duration: 2000
-    });
-    toast.present();
-  }
+  getSignUpForm() {
+    this.userApi.saveUser(this.user).subscribe(
+      res => {
+        this.response = res;
 
-  async coolToast() {
-    const toast = await this.toastController.create({
-      message: 'Por favor llena todos los campos',
-      position: 'top',
-      buttons: [
-        {
-          side: 'start',
-          icon: 'star',
-          text: 'un texto v:',
-          handler: () => {
-            console.log('toast icon clicked');
-          }
-        }, {
-          text: 'OK',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
+        console.log(this.response);
+
+        this.toastService.simpleToast(this.response.responsetext);
+
+        if(this.response.status === 'SUCCESS') {
+          console.log('success');
+          this.router.navigateByUrl('/');
         }
-      ]
-    });
-    toast.present();
+      }
+    );
   }
 
-  constructor(private router: Router, public toastController: ToastController) {}
-
-  ngOnInit() {
+  updateCitySelect() {
+    console.log('change');
+    this.catatalogsApi.getCitiesByState(this.user.stateId).subscribe(
+      res => {
+        this.cities = res;
+      }
+    );
   }
 
 }
