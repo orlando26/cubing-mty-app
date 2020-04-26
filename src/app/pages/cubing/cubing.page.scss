@@ -3,13 +3,14 @@ ion-content {
 }
 
 ion-select {
-    // Workaround to center the selection
+    // Workaround to center selection v:
     text-align: center;
-    min-width: 25vw;
+    min-width: 10vw;
+    max-width: 50vw;
 }
 
 ion-grid {
-    // reduce height by reducing padding and margins
+    // Reduce height by reducing padding and margins
     padding: 0;
     margin: 0;
 }

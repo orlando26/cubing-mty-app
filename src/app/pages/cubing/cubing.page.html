@@ -2,9 +2,12 @@
     <ion-card color="dark">
         <ion-grid>
             <ion-row>
+                <!-- Workaround to center selection v: -->
                 <ion-col></ion-col>
-                <!-- Workaround to center selection -->
-                <ion-col>
+                <ion-col></ion-col>
+                <ion-col></ion-col>
+                <ion-col></ion-col>
+                <ion-col className="ion-align-self-center">
                     <ion-item color="dark" lines="none">
                         <ion-select placeholder="3x3x3" (ionChange)="nextScramble()" [(ngModel)]="selectedCube">
                             <ion-select-option *ngFor="let cube of cubesList" [value]="cube">{{cube}}</ion-select-option>
@@ -12,7 +15,10 @@
                     </ion-item>
                 </ion-col>
                 <ion-col></ion-col>
-                <!-- Workaround to center selection -->
+                <ion-col></ion-col>
+                <ion-col></ion-col>
+                <ion-col></ion-col>
+                <!-- Workaround to center selection v: -->
             </ion-row>
         </ion-grid>
     </ion-card>
