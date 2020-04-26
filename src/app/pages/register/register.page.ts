@@ -44,14 +44,14 @@ export class RegisterPage implements OnInit {
 
   constructor(private router: Router,
               public toastService: ToastService,
-              private catatalogsApi: CatalogsService,
+              private catalogsApi: CatalogsService,
               private userApi: UserService) {}
 
   ngOnInit() {
   }
 
   ionViewWillEnter() {
-   this.catatalogsApi.getStates().subscribe(
+   this.catalogsApi.getStates().subscribe(
      res => {
        this.states = res;
      }
@@ -87,7 +87,7 @@ export class RegisterPage implements OnInit {
 
   updateCitySelect() {
     console.log('change');
-    this.catatalogsApi.getCitiesByState(this.user.stateId).subscribe(
+    this.catalogsApi.getCitiesByState(this.user.stateId).subscribe(
       res => {
         this.cities = res;
       }

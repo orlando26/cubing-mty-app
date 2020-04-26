@@ -15,7 +15,7 @@ export class CubingPage implements OnInit {
 
   cubesList: string[] = [];
 
-  contentBg = 'yellow-bg';
+  contentBg = 'init_bg';
 
   text1 = 'Best: N/A\nAVG 5: N/A\nAVG 12: N/A\nAVG 50: N/A';
 

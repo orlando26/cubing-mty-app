@@ -14,7 +14,7 @@ ion-label.signup_entry {
     border: none;
 }
 
-ion-item.signup_entry {
+ion-item {
     color: rgb(255, 255, 255);
     background-color: rgba(220, 220, 220, 0.1);
     border-radius: $this_radius;
@@ -23,23 +23,14 @@ ion-item.signup_entry {
     text-shadow: none;
 }
 
-ion-item.address_entry {
-    color: rgb(255, 255, 255);
-    background-color: rgba(220, 220, 220, 0.1);
-    border-radius: $this_radius;
-    padding: 0;
-    margin-top: 0;
-    text-shadow: none;
-}
-
-ion-button.signup_btn {
+ion-button {
     margin-top: 1vh;
     color: rgb(255, 255, 255);
     height: 3vh;
     border-radius: $this_radius;
 }
 
-ion-label.back_click {
+ion-label {
     font-size: 0.85em;
     color: var(--ion-color-primary-tint);
     text-align: center;
@@ -66,7 +57,7 @@ ion-select {
     margin-inline-end: 3vw;
 }
 
-:host {
+ :host {
     ion-item {
         --border-color: white !important; // default underline color
         --highlight-color-invalid: red; // invalid underline color
