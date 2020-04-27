@@ -1,5 +1,5 @@
-$font-xlarge: 5em;
-$font-large: 4em;
+$font-xlarge: 4.5em;
+$font-large: 3.5em;
 $font-medium: 1.2em;
 $font-small: 0.9em;
 $font-xsmall: 0.9em;
@@ -9,7 +9,6 @@ ion-content {
 
 ion-select {
     // Workaround to center selection v:
-    // text-align: center;
     min-width: 10vw;
     max-width: 50vw;
     font-weight: bold;
@@ -21,18 +20,16 @@ ion-select {
 }
 
 .row-select {
-    vertical-align: top;
-    ;
+    height: 2em;
 }
 
 .item-select-top {
-    margin-top: -0.5em;
+    margin-top: -0.8em;
     height: 2em;
 }
 
 .item-select-bottom {
-    // vertical-align: top;
-    // margin-top: -0.5em;
+    margin-top: -0.5em;
     height: 2em;
 }
 

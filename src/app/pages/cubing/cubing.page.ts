@@ -29,7 +29,7 @@ export class CubingPage implements OnInit {
   };
 
   selectedCube = '3x3x3';
-  selectedTourney = 'string';
+  selectedTourney = 'Global';
 
   constructor(
     private catalogsApi: CatalogsService,   
@@ -71,9 +71,6 @@ export class CubingPage implements OnInit {
     let txt_timer = document.getElementsByTagName('h1')[0];
     txt_timer.className = "content time-running";
     
-    let timer_class = txt_timer.getAttribute('class');
-    console.log("CLASS: "+ timer_class);
-    
     this.nextScramble();
 
     const t0 = performance.now();
@@ -96,13 +93,13 @@ export class CubingPage implements OnInit {
   ready() {
     console.log('READY...');
 
+    this.time = '00' + ':' + '00' + '.' + '000';
+
     // Style when ready
     this.hideComponents = true;
     let txt_timer = document.getElementsByTagName('h1')[0];
     txt_timer.className = "content time-ready";
 
-    let timer_class = txt_timer.getAttribute('class');
-    console.log("CLASS: "+ timer_class);
   }
   
   clickContent(event: any) {
@@ -111,27 +108,22 @@ export class CubingPage implements OnInit {
     let timer_area =["timing_content", "timing_timer", "timing_card", 
                      "timing_col", "timing_div"];
 
-    if (timer_area.indexOf(clicked) > -1){  // if null
+    if (timer_area.indexOf(clicked) > -1){  
 
       console.log('CLICKED ON TIMING AREA...');
-      document.body.style.setProperty('--my-var', 'var(--ion-color-danger)');
 
       clearInterval(this.timer);
-      this.nextScramble();
 
       // Style when stop
       this.hideComponents = false;
       let txt_timer = document.getElementsByTagName('h1')[0];
-      txt_timer.className = "content time-normal";
-      
       let timer_class = txt_timer.getAttribute('class');
-      console.log("CLASS: "+ timer_class);
 
-      for (let tourney in this.tourneysList){
-        console.log("TOURNEYS: " + tourney);
+      if (timer_class == "content time-running") {
+        this.nextScramble();
       }
+      txt_timer.className = "content time-normal";
 
-      
     } else {
       console.log('CLICKED ON OTHER AREA...');
     }
