@@ -79,24 +79,26 @@ export class CubingPage implements OnInit {
     console.log('ready...');
     document.body.style.setProperty('--my-var', 'var(--ion-color-success)');
   }
-
+  
   clickContent(event: any) {
     
     let clicked: string = (event.target as Element).getAttribute('name');
     console.log(clicked + " clicked" );
 
-    if (!clicked){  // if null
-      console.log('stop timer...');
+    if (
+      clicked == "timing_content"  ||
+      clicked == "timing_timer" ||
+      clicked == "timing_card" ||
+      clicked == "timing_col" ||
+      clicked == "timing_div" ){  // if null
+      console.log('Timer area...');
       document.body.style.setProperty('--my-var', 'var(--ion-color-danger)');
 
       clearInterval(this.timer);
       this.nextScramble();
 
-    } else if (clicked == "txt_scramble") {
-      console.log('do nothing...');
     } else {
-      console.log('buttons clicked..');
-
+      console.log('Other..');
     }
   }
 
