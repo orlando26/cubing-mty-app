@@ -11,6 +11,6 @@ export class TourneysService {
   constructor(private http: HttpClient) { }
 
   getTourneys(){
-    return this.http.get<Tourney>(this.uri);
+    return this.http.get<Tourney[]>(this.uri);
   }
 }
