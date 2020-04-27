@@ -1,9 +1,57 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>times</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <ion-item>
+    <ion-label>Cubo</ion-label>
+    <ion-select (ionChange)="changeCube()" [(ngModel)]="selectedCube" placeholder="3x3x3">
+      <ion-select-option *ngFor="let cube of cubesList"  [value]="cube">{{cube}}</ion-select-option>
+    </ion-select>
+  </ion-item>
 
+  <ion-toolbar>
+    <ion-segment value="time">
+      <ion-segment-button (click)="orderByTime()" value="time">
+        <ion-icon name="hourglass-outline"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button (click)="orderByDate()" value="date">
+        <ion-icon name="calendar-outline"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+  <ion-card *ngFor="let solve of solves">
+    <ion-card-content>
+      <ion-grid>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="2">
+            <h5>{{solve.id}}</h5>
+          </ion-col>
+          
+          <ion-col >
+            <ion-item>
+              <ion-label>
+                {{solve.time}}
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                {{solve.scramble}}
+              </ion-label>
+            </ion-item>
+          </ion-col>
+          
+          <ion-col size="2">
+            <ion-row>
+              <ion-col></ion-col>
+              <ion-col>
+                <ion-button (click)="presentPopover()" class="options-button" size="small" shape="round" fill="outline">
+                  <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+                </ion-button>
+              </ion-col>
+              <ion-col></ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  
 </ion-content>
