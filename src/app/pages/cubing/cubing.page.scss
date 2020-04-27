@@ -7,10 +7,15 @@ ion-content {
     --background: var(--ion-color-dark-tint);
 }
 
+.center-horizontally {
+    display: flex;
+    justify-content: center;
+}
+
 ion-select {
-    // Workaround to center selection v:
-    min-width: 10vw;
-    max-width: 50vw;
+    // Workaround to center text inside selector v:
+    min-width: 3em;
+    max-width: 50em;
     font-weight: bold;
     font-size: $font-medium;
 }
