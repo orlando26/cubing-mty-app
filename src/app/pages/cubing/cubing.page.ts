@@ -12,6 +12,8 @@ export class CubingPage implements OnInit {
   time = '00.00.00';
   timer: any;
 
+  isHidden = false;
+
   cubesList: string[] = [];
   tourneyList: string[] = [];
 
@@ -81,21 +83,23 @@ export class CubingPage implements OnInit {
   }
   
   clickContent(event: any) {
-    
     let clicked: string = (event.target as Element).getAttribute('name');
-    console.log(clicked + " clicked" );
 
-    if (
-      clicked == "timing_content"  ||
-      clicked == "timing_timer" ||
-      clicked == "timing_card" ||
-      clicked == "timing_col" ||
-      clicked == "timing_div" ){  // if null
+    let timer_area =["timing_content", "timing_timer", "timing_card", 
+                     "timing_col", "timing_div"];
+
+
+    if (timer_area.indexOf(clicked) > -1){  // if null
+
       console.log('Timer area...');
       document.body.style.setProperty('--my-var', 'var(--ion-color-danger)');
 
       clearInterval(this.timer);
       this.nextScramble();
+
+      this.isHidden = !this.isHidden;
+
+      console.log(this.isHidden)
 
     } else {
       console.log('Other..');

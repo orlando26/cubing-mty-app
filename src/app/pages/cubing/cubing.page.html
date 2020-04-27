@@ -2,7 +2,7 @@
 <!-- </ion-header> -->
 
 <ion-content name="timing_content" (click)="clickContent($event)" (press)="ready()" (pressup)="startTimer()">
-    <ion-card color="dark">
+    <ion-card color="dark" [hidden]="isHidden">
         <ion-grid>
             <ion-row>
                 <!-- Workaround to center selection v: -->
@@ -28,7 +28,7 @@
     <div name="timing_div" class="content">
 
         <ion-card name="timing_card" class="content scramble" color="transparent">
-            <span name="txt_scramble">{{scramble.rawSequence}}</span>
+            <span name="txt_scramble" [hidden]="isHidden">{{scramble.rawSequence}}</span>
         </ion-card>
 
         <h1 name="timing_content" class="content time">{{time}}</h1>
@@ -36,11 +36,11 @@
         <ion-grid class="content solve-actions">
             <ion-row>
                 <ion-col name="timing_col">
-                    <ion-button name="btn_delete" shape="round">
+                    <ion-button name="btn_delete" [hidden]="isHidden" shape="round">
                         <ion-icon style="font-size: 30px;" name="close-outline"></ion-icon>
                     </ion-button>
-                    <ion-button name="btn_dnf" shape="round">DNF</ion-button>
-                    <ion-button name="btn_plus2" shape="round">+2</ion-button>
+                    <ion-button name="btn_dnf" [hidden]="isHidden" shape="round">DNF</ion-button>
+                    <ion-button name="btn_plus2" [hidden]="isHidden" shape="round">+2</ion-button>
                 </ion-col>
             </ion-row>
         </ion-grid>
@@ -48,7 +48,7 @@
 
 </ion-content>
 
-<ion-footer class="ion-no-border">
+<ion-footer class="ion-no-border" [hidden]="isHidden">
     <ion-toolbar color="transparent">
         <ion-grid>
             <ion-row>
