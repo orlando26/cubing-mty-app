@@ -1,14 +1,11 @@
-<!-- <ion-header class="ion-no-border"> -->
-<!-- </ion-header> -->
-
 <ion-content name="timing_content" (click)="clickContent($event)" (press)="ready()" (pressup)="startTimer()">
     <ion-card color="dark" [hidden]="hideComponents">
         <ion-grid>
-            <ion-row>
+            <ion-row class="row-select">
                 <ion-col></ion-col>
                 <ion-col>
-                    <ion-item class="top" color="dark" lines="none">
-                        <ion-select class="top" placeholder="3x3x3" (ionChange)="nextScramble()" [(ngModel)]="selectedCube">
+                    <ion-item class="item-select-top" color="dark" lines="none">
+                        <ion-select placeholder="3x3x3" (ionChange)="nextScramble()" [(ngModel)]="selectedCube">
                             <ion-select-option *ngFor="let cube of cubesList" [value]="cube">{{cube}}</ion-select-option>
                         </ion-select>
                     </ion-item>
@@ -16,12 +13,12 @@
                 <ion-col></ion-col>
                 <!-- Workaround to center selection v: -->
             </ion-row>
-            <ion-row>
+            <ion-row class="row-select">
                 <ion-col></ion-col>
                 <ion-col>
-                    <ion-item class="bottom" color="dark" lines="none">
-                        <ion-select class="bottom" placeholder="Global" [(ngModel)]="selectedTourney">
-                            <ion-select-option *ngFor="let tourney of tourneys" [value]="tourney.id">{{tourney.name}}</ion-select-option>
+                    <ion-item class="item-select-bottom" color="dark" lines="none">
+                        <ion-select class="select-tourney" placeholder="Global" (ionChange)="changeTourney()" [(ngModel)]="selectedTourney">
+                            <ion-select-option *ngFor="let tourney of tourneysList" [value]="tourney.id">{{tourney.name}}</ion-select-option>
                         </ion-select>
                     </ion-item>
                 </ion-col>
@@ -56,7 +53,7 @@
 <ion-footer class="ion-no-border" [hidden]="hideComponents">
     <ion-toolbar color="transparent">
         <ion-grid>
-            <ion-row>
+            <ion-row class="footer">
                 <ion-col>
                     <pre class="stats" style="text-align: start">{{statsLeft}}</pre>
                 </ion-col>

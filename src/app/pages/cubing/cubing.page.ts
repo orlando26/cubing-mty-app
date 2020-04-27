@@ -17,13 +17,7 @@ export class CubingPage implements OnInit {
 
   cubesList: string[] = [];
 
-  tourneys: Tourney[] = [];
-  // tourneys: Tourney = {
-  //   id: 0,
-  //   name: '',
-  //   startDate: '',
-  //   endDate: ''
-  // };
+  tourneysList: Tourney[] = [];
 
   statsLeft = 'Media: N/A\nMejor: N/A\nPeor: N/A\nSolves: N/A';
   statsRight = 'Ao5: N/A\nAo12: N/A\nAo50: N/A\nAo100: N/A';
@@ -35,6 +29,7 @@ export class CubingPage implements OnInit {
   };
 
   selectedCube = '3x3x3';
+  selectedTourney = 'string';
 
   constructor(
     private catalogsApi: CatalogsService,   
@@ -47,9 +42,10 @@ export class CubingPage implements OnInit {
         this.cubesList = res;
       }
     );
+
     this.tourneysApi.getTourneys().subscribe(
       res => {
-        this.tourneys = res;
+        this.tourneysList = res;
       }
     );
   }
@@ -64,6 +60,9 @@ export class CubingPage implements OnInit {
         this.scramble = res;
       }
     );
+  }
+
+  changeTourney() {
   }
 
   startTimer() {
@@ -128,7 +127,7 @@ export class CubingPage implements OnInit {
       let timer_class = txt_timer.getAttribute('class');
       console.log("CLASS: "+ timer_class);
 
-      for (let tourney in this.tourneys){
+      for (let tourney in this.tourneysList){
         console.log("TOURNEYS: " + tourney);
       }
 
