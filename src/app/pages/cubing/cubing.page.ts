@@ -1,5 +1,6 @@
 import { ScrambleService } from './../../services/scramble.service';
 import { CatalogsService } from './../../services/catalogs.service';
+import { TourneysService } from './../../services/tourneys.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -15,9 +16,14 @@ export class CubingPage implements OnInit {
   hideComponents = false;
 
   cubesList: string[] = [];
-  tourneyList: string[] = [];
 
-  contentBg = 'init_bg';
+  tourneys: Tourney[] = [];
+  // tourneys: Tourney = {
+  //   id: 0,
+  //   name: '',
+  //   startDate: '',
+  //   endDate: ''
+  // };
 
   statsLeft = 'Media: N/A\nMejor: N/A\nPeor: N/A\nSolves: N/A';
   statsRight = 'Ao5: N/A\nAo12: N/A\nAo50: N/A\nAo100: N/A';
@@ -30,7 +36,10 @@ export class CubingPage implements OnInit {
 
   selectedCube = '3x3x3';
 
-  constructor(private catalogsApi: CatalogsService, private scrambleApi: ScrambleService) { }
+  constructor(
+    private catalogsApi: CatalogsService,   
+    private scrambleApi: ScrambleService,
+    private tourneysApi: TourneysService) { }
 
   ngOnInit() {
     this.catalogsApi.getCubesList().subscribe(
@@ -38,9 +47,9 @@ export class CubingPage implements OnInit {
         this.cubesList = res;
       }
     );
-    this.catalogsApi.getCubesList().subscribe(
+    this.tourneysApi.getTourneys().subscribe(
       res => {
-        this.tourneyList = res;
+        this.tourneys = res;
       }
     );
   }
@@ -59,6 +68,13 @@ export class CubingPage implements OnInit {
 
   startTimer() {
 
+    // Style when timing
+    let txt_timer = document.getElementsByTagName('h1')[0];
+    txt_timer.className = "content time-running";
+    
+    let timer_class = txt_timer.getAttribute('class');
+    console.log("CLASS: "+ timer_class);
+    
     this.nextScramble();
 
     const t0 = performance.now();
@@ -79,15 +95,15 @@ export class CubingPage implements OnInit {
   }
 
   ready() {
-    console.log('ready...');
-    document.body.style.setProperty('--my-var', 'var(--ion-color-success)');
+    console.log('READY...');
 
     // Style when ready
     this.hideComponents = true;
     let txt_timer = document.getElementsByTagName('h1')[0];
+    txt_timer.className = "content time-ready";
+
     let timer_class = txt_timer.getAttribute('class');
-    txt_timer.classList.remove("time");
-    txt_timer.classList.add("time-running");
+    console.log("CLASS: "+ timer_class);
   }
   
   clickContent(event: any) {
@@ -98,7 +114,7 @@ export class CubingPage implements OnInit {
 
     if (timer_area.indexOf(clicked) > -1){  // if null
 
-      console.log('Timer area...');
+      console.log('CLICKED ON TIMING AREA...');
       document.body.style.setProperty('--my-var', 'var(--ion-color-danger)');
 
       clearInterval(this.timer);
@@ -107,13 +123,18 @@ export class CubingPage implements OnInit {
       // Style when stop
       this.hideComponents = false;
       let txt_timer = document.getElementsByTagName('h1')[0];
+      txt_timer.className = "content time-normal";
+      
       let timer_class = txt_timer.getAttribute('class');
-      console.log("class:" + timer_class);
-      txt_timer.classList.remove("time-running");
-      txt_timer.classList.add("time");
+      console.log("CLASS: "+ timer_class);
 
+      for (let tourney in this.tourneys){
+        console.log("TOURNEYS: " + tourney);
+      }
+
+      
     } else {
-      console.log('Other..');
+      console.log('CLICKED ON OTHER AREA...');
     }
   }
 

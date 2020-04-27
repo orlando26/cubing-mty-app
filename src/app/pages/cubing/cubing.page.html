@@ -5,21 +5,26 @@
     <ion-card color="dark" [hidden]="hideComponents">
         <ion-grid>
             <ion-row>
-                <!-- Workaround to center selection v: -->
                 <ion-col></ion-col>
-                <ion-col></ion-col>
-                <ion-col></ion-col>
-                <ion-col></ion-col>
-                <ion-col className="ion-align-self-center">
-                    <ion-item color="dark" lines="none">
-                        <ion-select placeholder="3x3x3" (ionChange)="nextScramble()" [(ngModel)]="selectedCube">
+                <ion-col>
+                    <ion-item class="top" color="dark" lines="none">
+                        <ion-select class="top" placeholder="3x3x3" (ionChange)="nextScramble()" [(ngModel)]="selectedCube">
                             <ion-select-option *ngFor="let cube of cubesList" [value]="cube">{{cube}}</ion-select-option>
                         </ion-select>
                     </ion-item>
                 </ion-col>
                 <ion-col></ion-col>
+                <!-- Workaround to center selection v: -->
+            </ion-row>
+            <ion-row>
                 <ion-col></ion-col>
-                <ion-col></ion-col>
+                <ion-col>
+                    <ion-item class="bottom" color="dark" lines="none">
+                        <ion-select class="bottom" placeholder="Global" [(ngModel)]="selectedTourney">
+                            <ion-select-option *ngFor="let tourney of tourneys" [value]="tourney.id">{{tourney.name}}</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
                 <ion-col></ion-col>
                 <!-- Workaround to center selection v: -->
             </ion-row>
@@ -31,7 +36,7 @@
             <span name="txt_scramble" [hidden]="hideComponents">{{scramble.rawSequence}}</span>
         </ion-card>
 
-        <h1 name="timing_content" class="content time">{{time}}</h1>
+        <h1 name="timing_content" class="content time-normal">{{time}}</h1>
 
         <ion-grid class="content solve-actions">
             <ion-row>

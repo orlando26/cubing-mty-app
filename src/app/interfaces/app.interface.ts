@@ -18,6 +18,13 @@ interface User {
   wcaId: string;
 }
 
+interface Tourney {
+  id: number;
+  name: string;
+  endDate: string;
+  startDate: string;
+}
+
 interface Role {
   role: string;
 }
