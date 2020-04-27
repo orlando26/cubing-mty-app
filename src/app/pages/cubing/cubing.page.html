@@ -1,3 +1,6 @@
+<!-- <ion-header class="ion-no-border"> -->
+<!-- </ion-header> -->
+
 <ion-content (click)="stopTimer()" (press)="ready()" (pressup)="startTimer()">
     <ion-card color="dark">
         <ion-grid>
@@ -22,37 +25,37 @@
             </ion-row>
         </ion-grid>
     </ion-card>
+    <div class="content">
 
-    <div class="content-style">
-        <h1 style="font-size: 2.5em;">{{time}}</h1>
-        <span>{{scramble.rawSequence}}</span>
+        <ion-card class="content scramble" color="transparent">
+            <span>{{scramble.rawSequence}}</span>
+        </ion-card>
 
-        <br>
-        <ion-grid>
+        <h1 class="content time">{{time}}</h1>
+
+        <ion-grid class="content solve-actions">
             <ion-row>
                 <ion-col>
-                    <ion-button color="dark">+2</ion-button>
-                </ion-col>
-                <ion-col>
-                    <ion-button color="dark">DNF</ion-button>
-                </ion-col>
-                <ion-col>
-                    <ion-button color="dark">Delete</ion-button>
+                    <ion-button shape="round">
+                        <ion-icon style="font-size: 30px;" name="close-outline"></ion-icon>
+                    </ion-button>
+                    <ion-button shape="round">DNF</ion-button>
+                    <ion-button shape="round">+2</ion-button>
                 </ion-col>
             </ion-row>
         </ion-grid>
     </div>
 </ion-content>
 
-<ion-footer style="font-size: small;">
-    <ion-toolbar color="dark">
+<ion-footer class="ion-no-border">
+    <ion-toolbar color="transparent">
         <ion-grid>
             <ion-row>
                 <ion-col>
-                    <pre style="text-align: start;">{{text1}}</pre>
+                    <pre class="stats" style="text-align: start">{{statsLeft}}</pre>
                 </ion-col>
                 <ion-col>
-                    <pre style="text-align: end;">{{text2}}</pre>
+                    <pre class="stats" style="text-align: end">{{statsRight}}</pre>
                 </ion-col>
             </ion-row>
         </ion-grid>

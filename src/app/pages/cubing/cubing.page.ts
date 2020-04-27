@@ -17,9 +17,9 @@ export class CubingPage implements OnInit {
 
   contentBg = 'init_bg';
 
-  text1 = 'Best: N/A\nAVG 5: N/A\nAVG 12: N/A\nAVG 50: N/A';
+  statsLeft = 'Media: N/A\nMejor: N/A\nPeor: N/A\nSolves: N/A';
 
-  text2 = 'Worst: N/A\nAVG 100: N/A\nAVG 1000: N/A\nSolves: N/A';
+  statsRight = 'Ao5: N/A\nAo12: N/A\nAo50: N/A\nAo100: N/A';
 
   scramble: Scramble = {
     sequence: [],
