@@ -28,19 +28,19 @@
     <div class="content">
 
         <ion-card class="content scramble" color="transparent">
-            <span>{{scramble.rawSequence}}</span>
+            <span name="txt_scramble">{{scramble.rawSequence}}</span>
         </ion-card>
 
-        <h1 class="content time">{{time}}</h1>
+        <h1 name="txt_time" class="content time">{{time}}</h1>
 
         <ion-grid class="content solve-actions">
             <ion-row>
                 <ion-col>
-                    <ion-button shape="round">
+                    <ion-button name="btn_delete" shape="round">
                         <ion-icon style="font-size: 30px;" name="close-outline"></ion-icon>
                     </ion-button>
-                    <ion-button shape="round">DNF</ion-button>
-                    <ion-button shape="round">+2</ion-button>
+                    <ion-button name="btn_dnf" shape="round">DNF</ion-button>
+                    <ion-button name="btn_plus2" shape="round">+2</ion-button>
                 </ion-col>
             </ion-row>
         </ion-grid>

@@ -81,22 +81,29 @@ export class CubingPage implements OnInit {
   }
 
   stopTimer(event: any) {
-    console.log('stop...');
+    
 
     
-    let elementId: string = (event.target as Element).tagName;
-    console.log(elementId);
+    let tag: string = (event.target as Element).getAttribute('name');
+    console.log(tag);
 
     // To be excluded:
     // ION-BUTTON 
     // SPAN
+    // H1
 
+    if (
+      tag == 'ION-CONTENT' ||
+      tag){ 'ION-CONTENT'
+      console.log('stop...');
+      document.body.style.setProperty('--my-var', 'var(--ion-color-danger)');
 
+      clearInterval(this.timer);
+      this.nextScramble();
 
-    document.body.style.setProperty('--my-var', 'var(--ion-color-danger)');
-
-    clearInterval(this.timer);
-    this.nextScramble();
+     } else {
+      console.log("Nothing");
+    }
   }
 
 }
