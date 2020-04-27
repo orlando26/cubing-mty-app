@@ -1,7 +1,7 @@
 <!-- <ion-header class="ion-no-border"> -->
 <!-- </ion-header> -->
 
-<ion-content (click)="stopTimer()" (press)="ready()" (pressup)="startTimer()">
+<ion-content (click)="stopTimer($event)" (press)="ready()" (pressup)="startTimer()">
     <ion-card color="dark">
         <ion-grid>
             <ion-row>
@@ -45,6 +45,7 @@
             </ion-row>
         </ion-grid>
     </div>
+
 </ion-content>
 
 <ion-footer class="ion-no-border">

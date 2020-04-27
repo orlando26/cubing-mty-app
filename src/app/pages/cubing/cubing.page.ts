@@ -10,15 +10,14 @@ import { Component, OnInit } from '@angular/core';
 export class CubingPage implements OnInit {
 
   time = '00.00.00';
-
   timer: any;
 
   cubesList: string[] = [];
+  tourneyList: string[] = [];
 
   contentBg = 'init_bg';
 
   statsLeft = 'Media: N/A\nMejor: N/A\nPeor: N/A\nSolves: N/A';
-
   statsRight = 'Ao5: N/A\nAo12: N/A\nAo50: N/A\nAo100: N/A';
 
   scramble: Scramble = {
@@ -35,6 +34,11 @@ export class CubingPage implements OnInit {
     this.catalogsApi.getCubesList().subscribe(
       res => {
         this.cubesList = res;
+      }
+    );
+    this.catalogsApi.getCubesList().subscribe(
+      res => {
+        this.tourneyList = res;
       }
     );
   }
@@ -76,8 +80,19 @@ export class CubingPage implements OnInit {
     document.body.style.setProperty('--my-var', 'var(--ion-color-success)');
   }
 
-  stopTimer() {
+  stopTimer(event: any) {
     console.log('stop...');
+
+    
+    let elementId: string = (event.target as Element).tagName;
+    console.log(elementId);
+
+    // To be excluded:
+    // ION-BUTTON 
+    // SPAN
+
+
+
     document.body.style.setProperty('--my-var', 'var(--ion-color-danger)');
 
     clearInterval(this.timer);
