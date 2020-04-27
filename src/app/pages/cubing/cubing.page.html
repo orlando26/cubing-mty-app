@@ -1,7 +1,7 @@
 <!-- <ion-header class="ion-no-border"> -->
 <!-- </ion-header> -->
 
-<ion-content (click)="stopTimer($event)" (press)="ready()" (pressup)="startTimer()">
+<ion-content (click)="clickContent($event)" (press)="ready()" (pressup)="startTimer()">
     <ion-card color="dark">
         <ion-grid>
             <ion-row>
@@ -31,7 +31,7 @@
             <span name="txt_scramble">{{scramble.rawSequence}}</span>
         </ion-card>
 
-        <h1 name="txt_time" class="content time">{{time}}</h1>
+        <h1 class="content time">{{time}}</h1>
 
         <ion-grid class="content solve-actions">
             <ion-row>

@@ -80,29 +80,23 @@ export class CubingPage implements OnInit {
     document.body.style.setProperty('--my-var', 'var(--ion-color-success)');
   }
 
-  stopTimer(event: any) {
+  clickContent(event: any) {
     
+    let clicked: string = (event.target as Element).getAttribute('name');
+    console.log(clicked + " clicked" );
 
-    
-    let tag: string = (event.target as Element).getAttribute('name');
-    console.log(tag);
-
-    // To be excluded:
-    // ION-BUTTON 
-    // SPAN
-    // H1
-
-    if (
-      tag == 'ION-CONTENT' ||
-      tag){ 'ION-CONTENT'
-      console.log('stop...');
+    if (!clicked){  // if null
+      console.log('stop timer...');
       document.body.style.setProperty('--my-var', 'var(--ion-color-danger)');
 
       clearInterval(this.timer);
       this.nextScramble();
 
-     } else {
-      console.log("Nothing");
+    } else if (clicked == "txt_scramble") {
+      console.log('do nothing...');
+    } else {
+      console.log('buttons clicked..');
+
     }
   }
 
