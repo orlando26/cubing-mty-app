@@ -99,6 +99,10 @@ export class CubingPage implements OnInit {
 
       this.isHidden = !this.isHidden;
 
+      let txt_timer = document.getElementsByTagName('h1')[0];
+      txt_timer.classList.remove("time");   //remove the class
+      txt_timer.classList.add("time-running");   //add the class
+
       console.log(this.isHidden)
 
     } else {
