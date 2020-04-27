@@ -12,7 +12,7 @@ export class CubingPage implements OnInit {
   time = '00.00.00';
   timer: any;
 
-  isHidden = false;
+  hideComponents = false;
 
   cubesList: string[] = [];
   tourneyList: string[] = [];
@@ -58,6 +58,7 @@ export class CubingPage implements OnInit {
   }
 
   startTimer() {
+
     this.nextScramble();
 
     const t0 = performance.now();
@@ -80,6 +81,13 @@ export class CubingPage implements OnInit {
   ready() {
     console.log('ready...');
     document.body.style.setProperty('--my-var', 'var(--ion-color-success)');
+
+    // Style when ready
+    this.hideComponents = true;
+    let txt_timer = document.getElementsByTagName('h1')[0];
+    let timer_class = txt_timer.getAttribute('class');
+    txt_timer.classList.remove("time");
+    txt_timer.classList.add("time-running");
   }
   
   clickContent(event: any) {
@@ -87,7 +95,6 @@ export class CubingPage implements OnInit {
 
     let timer_area =["timing_content", "timing_timer", "timing_card", 
                      "timing_col", "timing_div"];
-
 
     if (timer_area.indexOf(clicked) > -1){  // if null
 
@@ -97,13 +104,13 @@ export class CubingPage implements OnInit {
       clearInterval(this.timer);
       this.nextScramble();
 
-      this.isHidden = !this.isHidden;
-
+      // Style when stop
+      this.hideComponents = false;
       let txt_timer = document.getElementsByTagName('h1')[0];
-      txt_timer.classList.remove("time");   //remove the class
-      txt_timer.classList.add("time-running");   //add the class
-
-      console.log(this.isHidden)
+      let timer_class = txt_timer.getAttribute('class');
+      console.log("class:" + timer_class);
+      txt_timer.classList.remove("time-running");
+      txt_timer.classList.add("time");
 
     } else {
       console.log('Other..');
