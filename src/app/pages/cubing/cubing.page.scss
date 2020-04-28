@@ -5,6 +5,7 @@ $font-small: 0.9em;
 $font-xsmall: 0.9em;
 ion-content {
     --background: var(--ion-color-dark-tint);
+    --overflow: hidden;
 }
 
 ion-header {

@@ -8,25 +8,24 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './cubing.page.html',
   styleUrls: ['./cubing.page.scss'],
 })
-export class CubingPage implements OnInit {
 
-  time = '00.00.00';
-  timer: any;
+export class CubingPage implements OnInit {
 
   hideComponents = false;
 
   cubesList: string[] = [];
-
   tourneysList: Tourney[] = [];
-
-  statsLeft = 'Media: N/A\nMejor: N/A\nPeor: N/A\nSolves: N/A';
-  statsRight = 'Ao5: N/A\nAo12: N/A\nAo50: N/A\nAo100: N/A';
-
   scramble: Scramble = {
     sequence: [],
     rawSequence: '',
     scramblerId: ''
   };
+
+  time = '00:00.000';
+  timer: any;
+
+  statsLeft = 'Media: N/A\nMejor: N/A\nPeor: N/A\nSolves: N/A';
+  statsRight = 'Ao5: N/A\nAo12: N/A\nAo50: N/A\nAo100: N/A';
 
   selectedCube = '3x3x3';
   selectedTourney = 'Global';
@@ -42,12 +41,12 @@ export class CubingPage implements OnInit {
         this.cubesList = res;
       }
     );
-
     this.tourneysApi.getTourneys().subscribe(
       res => {
         this.tourneysList = res;
       }
     );
+
   }
 
   ionViewWillEnter() {
@@ -103,6 +102,7 @@ export class CubingPage implements OnInit {
   }
   
   clickContent(event: any) {
+  
     let clicked: string = (event.target as Element).getAttribute('name');
 
     let timer_area =["timing_content", "timing_timer", "timing_card", 
@@ -128,5 +128,80 @@ export class CubingPage implements OnInit {
       console.log('CLICKED ON OTHER AREA...');
     }
   }
+
+  readyTime: number = 0;
+  interval: any;
+  previousTime = '00:00.000';
+  waitTime = 1;
+    onPressTimingArea($event) {
+
+        this.previousTime = this.time;
+        this.time = '00' + ':' + '00' + '.' + '000';    // reset timer
+
+        this.readyTime = 0;
+        this.startReadyTime();
+
+        console.log("onPress");
+        console.log(this.readyTime);
+    }
+
+    onPressUpTimingArea($event) {
+
+        this.stopReadyTime();
+        
+        console.log("onPressUp");
+        console.log(this.readyTime);
+    }
+
+    
+    startReadyTime() {
+        const self = this;
+        this.interval = setInterval(function () {
+            self.readyTime = self.readyTime + 1;
+            
+            console.log(self.readyTime);
+            if (self.readyTime >= self.waitTime){                        // Style when ready
+                self.hideComponents = true;
+                let txt_timer = document.getElementsByTagName('h1')[0];
+                txt_timer.className = "content time-ready";
+            }
+        }, 1000);
+    }
+
+    stopReadyTime() {
+      clearInterval(this.interval);
+      if (this.readyTime < this.waitTime){                                   // not ready ):
+        this.time = this.previousTime;
+        console.log("NOT READY")
+
+      } else {                                                   // ready :3
+        
+        
+
+        
+        // Style when timing
+        let txt_timer = document.getElementsByTagName('h1')[0];
+        txt_timer.className = "content time-running";
+        
+        this.nextScramble();
+
+        const t0 = performance.now();
+
+        this.timer = setInterval( () => {
+          const dif = performance.now() - t0;
+
+          const seconds = Math.floor((dif / 1000) % 60);
+          const minutes = Math.floor((dif / 1000 / 60) % 60);
+          const ms = Math.floor(dif % 1000);
+
+          const secondsStr = seconds < 10 ? ('0' + seconds) : seconds;
+          const minutesStr = minutes < 10 ? ('0' + minutes) : minutes;
+          const msStr = ms < 100 ? (ms < 10 ? ('00' + ms) : ('0' + ms))  : ms;
+
+          this.time = minutesStr + ':' + secondsStr + '.' + msStr;
+        }, 10);
+
+      }
+    }
 
 }

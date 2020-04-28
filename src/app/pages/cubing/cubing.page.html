@@ -1,5 +1,5 @@
-<ion-content name="timing_content" (click)="clickContent($event)" (press)="ready()" (pressup)="startTimer()">
-    <!-- <ion-content name="timing_content" (click)="clickContent($event)" (press)="ready()"> -->
+<!-- <ion-content name="timing_content" (click)="clickContent($event)" (press)="ready()" (pressup)="startTimer()"> -->
+<ion-content id="mycontent" name="timing_content" (click)="clickContent($event)" (press)="onPressTimingArea($event)" (panstart)="onPressTimingArea($event)" (pressup)="onPressUpTimingArea($event)" (panend)="onPressUpTimingArea($event)">
     <ion-card color="dark" [hidden]="hideComponents">
         <ion-grid>
             <ion-row class="stretch-vertically">
