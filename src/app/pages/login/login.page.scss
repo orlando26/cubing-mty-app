@@ -1,8 +1,7 @@
 ion-content.background_sign {
-    --background: url(../../../assets/img/bg_img_login_blur_dark.jpg) no-repeat center center / cover;
+    // --background: url(../../../assets/img/bg_img_login_blur_dark.jpg) no-repeat center center / cover;
+    --background: var(--ion-color-dark-tint);
     --overflow: hidden;
-    // font-size: calc(0.75em + 1vmin);
-    // font-size: calc(1.2rem + 0.4vw);
 }
 
 .bg-transparent {

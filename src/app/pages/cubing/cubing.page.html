@@ -2,9 +2,9 @@
     <!-- <ion-content name="timing_content" (click)="clickContent($event)" (press)="ready()"> -->
     <ion-card color="dark" [hidden]="hideComponents">
         <ion-grid>
-            <ion-row class="row-select">
+            <ion-row class="stretch-vertically">
                 <ion-col class="center-horizontally">
-                    <ion-item class="item-select-top" color="dark" lines="none">
+                    <ion-item class="stretch-vertically" color="dark" lines="none">
                         <ion-select placeholder="3x3x3" (ionChange)="nextScramble()" [(ngModel)]="selectedCube">
                             <ion-select-option *ngFor="let cube of cubesList" [value]="cube">{{cube}}</ion-select-option>
                         </ion-select>
@@ -12,9 +12,9 @@
                 </ion-col>
             </ion-row>
 
-            <ion-row class="row-select">
+            <ion-row class="stretch-vertically">
                 <ion-col class="center-horizontally">
-                    <ion-item class="item-select-bottom" color="dark" lines="none">
+                    <ion-item class="stretch-vertically" color="dark" lines="none">
                         <ion-select class="select-tourney" placeholder="Global" (ionChange)="changeTourney()" [(ngModel)]="selectedTourney">
                             <ion-select-option *ngFor="let tourney of tourneysList" [value]="tourney.id">{{tourney.name}}</ion-select-option>
                         </ion-select>

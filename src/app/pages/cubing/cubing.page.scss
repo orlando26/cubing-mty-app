@@ -7,13 +7,26 @@ ion-content {
     --background: var(--ion-color-dark-tint);
 }
 
+ion-header {
+    background-color: var(--ion-color-dark-tint);
+}
+
 .center-horizontally {
     display: flex;
     justify-content: center;
 }
 
+ion-row.stretch-vertically {
+    height: 2.5em;
+}
+
+ion-item.stretch-vertically {
+    margin-top: -0.5em;
+    height: 2em;
+}
+
 ion-select {
-    // Workaround to center text inside selector v:
+    // Stretch cubes/tourneys selectors to content
     min-width: 3em;
     max-width: 50em;
     font-weight: bold;
@@ -22,24 +35,6 @@ ion-select {
 
 .select-tourney {
     font-size: $font-small;
-}
-
-.row-select {
-    height: 2em;
-}
-
-.item-select-top {
-    margin-top: -0.8em;
-    height: 2em;
-}
-
-.item-select-bottom {
-    margin-top: -0.5em;
-    height: 2em;
-}
-
-ion-header {
-    background-color: var(--ion-color-dark-tint);
 }
 
 .content {

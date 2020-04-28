@@ -1,5 +1,6 @@
 ion-content.background_sign {
-    --background: url(../../../assets/img/bg_img_login_blur_dark.jpg) no-repeat center center / cover;
+    // --background: url(../../../assets/img/bg_img_login_blur_dark.jpg) no-repeat center center / cover;
+    --background: var(--ion-color-dark-tint);
     --overflow: hidden;
 }
 
