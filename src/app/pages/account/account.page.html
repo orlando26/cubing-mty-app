@@ -17,10 +17,11 @@
       <img src="assets/img/background2.jpg">
     </ion-avatar>
     <ion-label>
-      <h2>Name</h2>
-      <p>WCAID</p>
-      <p>Birthday</p>
-      <p>State</p>
+      <script>getUser();</script>
+      <h2>Name: {{user.name}}</h2>
+      <p>WCAID: {{user.wcaId}}</p>
+      <p>Birthday: {{user.birthday}}</p>
+      <p>State: {{user.email}}</p>
     </ion-label>
   </ion-item>
 
@@ -45,15 +46,15 @@
               <img src="assets/img/background4.jpg">
             </ion-col>
             <ion-col width="3">
-              <h2>Single</h2>
+              <h3>Single</h3>
               <p>10</p>
             </ion-col>
             <ion-col width="3">
-              <h2>Avg</h2>
+              <h3>Avg</h3>
               <p>11</p>
             </ion-col>
             <ion-col width="2">
-              <h2>ER</h2>
+              <h3>ER</h3>
               <p>1</p>
             </ion-col>
           </ion-row>

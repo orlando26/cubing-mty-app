@@ -5,6 +5,7 @@ interface Scramble {
 }
 
 interface User {
+  userId: number;
   birthday: string;
   cityId: number;
   email: string;
