@@ -21,7 +21,7 @@ export class CubingPage implements OnInit {
     scramblerId: ''
   };
 
-  time = '00:00.000';
+  time = '00:00.00';
   timer: any;
 
   statsLeft = 'Media: N/A\nMejor: N/A\nPeor: N/A\nSolves: N/A';
@@ -92,7 +92,7 @@ export class CubingPage implements OnInit {
   ready() {
     console.log('READY...');
 
-    this.time = '00' + ':' + '00' + '.' + '000';
+    this.time = '00' + ':' + '00' + '.' + '00';
 
     // Style when ready
     this.hideComponents = true;
@@ -131,12 +131,12 @@ export class CubingPage implements OnInit {
 
   readyTime: number = 0;
   interval: any;
-  previousTime = '00:00.000';
+  previousTime = '00:00.00';
   waitTime = 1;
     onPressTimingArea($event) {
 
         this.previousTime = this.time;
-        this.time = '00' + ':' + '00' + '.' + '000';    // reset timer
+        this.time = '00' + ':' + '00' + '.' + '00';    // reset timer
 
         this.readyTime = 0;
         this.startReadyTime();
@@ -198,7 +198,7 @@ export class CubingPage implements OnInit {
           const minutesStr = minutes < 10 ? ('0' + minutes) : minutes;
           const msStr = ms < 100 ? (ms < 10 ? ('00' + ms) : ('0' + ms))  : ms;
 
-          this.time = minutesStr + ':' + secondsStr + '.' + msStr;
+          this.time = minutesStr + ':' + secondsStr + '.' + String(msStr).substring(0,2);
         }, 10);
 
       }

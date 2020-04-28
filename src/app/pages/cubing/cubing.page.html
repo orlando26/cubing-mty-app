@@ -1,6 +1,37 @@
 <!-- <ion-content name="timing_content" (click)="clickContent($event)" (press)="ready()" (pressup)="startTimer()"> -->
-<ion-content id="mycontent" name="timing_content" (click)="clickContent($event)" (press)="onPressTimingArea($event)" (panstart)="onPressTimingArea($event)" (pressup)="onPressUpTimingArea($event)" (panend)="onPressUpTimingArea($event)">
-    <ion-card color="dark" [hidden]="hideComponents">
+<!-- <ion-content id="mycontent" name="timing_content" (click)="clickContent($event)" (press)="onPressTimingArea($event)" (panstart)="onPressTimingArea($event)" (pressup)="onPressUpTimingArea($event)" (panend)="onPressUpTimingArea($event)"> -->
+<!-- <ion-content id="mycontent" name="timing_content" (click)="clickContent($event)" (press)="onPressTimingArea($event)" (pressup)="onPressUpTimingArea($event)" (panend)="onPressUpTimingArea($event)"> -->
+<ion-content id="mycontent" name="timing_content" (click)="clickContent($event)" (press)="onPressTimingArea($event)" (pressup)="onPressUpTimingArea($event)" (panend)="onPressUpTimingArea($event)">
+
+    <div class="timing-area" name="timing_div">
+
+        <ion-grid>
+            <ion-row class="text-timer">
+                <h1 name="timing_content" class="content time-normal">{{time}}</h1>
+            </ion-row>
+        </ion-grid>
+    </div>
+
+    <ion-card name="timing_card" class="content scramble" color="transparent">
+        <span name="txt_scramble">{{scramble.rawSequence}}</span>
+    </ion-card>
+
+    <ion-toolbar class="footer" color="transparent" [hidden]="hideComponents">
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <pre class="stats" style="text-align: start">{{statsLeft}}</pre>
+                </ion-col>
+                <ion-col>
+                    <pre class="stats" style="text-align: end">{{statsRight}}</pre>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-toolbar>
+</ion-content>
+
+<ion-fab [hidden]="hideComponents" class="header-fab">
+    <ion-card class="header-card" color="dark">
         <ion-grid>
             <ion-row class="stretch-vertically">
                 <ion-col class="center-horizontally">
@@ -23,40 +54,22 @@
             </ion-row>
         </ion-grid>
     </ion-card>
-    <div name="timing_div" class="content">
 
-        <ion-card name="timing_card" class="content scramble" color="transparent">
-            <span name="txt_scramble" [hidden]="hideComponents">{{scramble.rawSequence}}</span>
-        </ion-card>
-
-        <h1 name="timing_content" class="content time-normal">{{time}}</h1>
-
+    <ion-card class="action-buttons" color="dark">
         <ion-grid class="content solve-actions">
-            <ion-row>
+            <ion-row class="buttons">
                 <ion-col name="timing_col">
-                    <ion-button name="btn_delete" [hidden]="hideComponents" shape="round">
-                        <ion-icon style="font-size: 30px;" name="close-outline"></ion-icon>
-                    </ion-button>
-                    <ion-button name="btn_dnf" [hidden]="hideComponents" shape="round">DNF</ion-button>
-                    <ion-button name="btn_plus2" [hidden]="hideComponents" shape="round">+2</ion-button>
+                    <ion-fab-button class="actions" name="btn_delete" shape="round">
+                        <ion-icon name="close-outline"></ion-icon>
+                    </ion-fab-button>
+                </ion-col>
+                <ion-col>
+                    <ion-fab-button class="actions" name="btn_dnf" shape="round">DNF</ion-fab-button>
+                </ion-col>
+                <ion-col>
+                    <ion-fab-button class="actions" name="btn_plus2" shape="round">+2</ion-fab-button>
                 </ion-col>
             </ion-row>
         </ion-grid>
-    </div>
-
-</ion-content>
-
-<ion-footer class="ion-no-border" [hidden]="hideComponents">
-    <ion-toolbar color="transparent">
-        <ion-grid>
-            <ion-row class="footer">
-                <ion-col>
-                    <pre class="stats" style="text-align: start">{{statsLeft}}</pre>
-                </ion-col>
-                <ion-col>
-                    <pre class="stats" style="text-align: end">{{statsRight}}</pre>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </ion-toolbar>
-</ion-footer>
+    </ion-card>
+</ion-fab>
