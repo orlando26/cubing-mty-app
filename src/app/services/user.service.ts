@@ -18,4 +18,8 @@ export class UserService {
   saveUser(user: User) {
     return this.http.post(this.uri + 'registration', JSON.stringify(user), this.header);
   }
+
+  getUser(userId: number){
+    return this.http.get<User>(this.uri + userId);
+  }
 }

@@ -5,10 +5,76 @@
         <ion-icon slot="icon-only" name="power-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>account</ion-title>
+    <ion-title>Perfil</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+
+  <ion-item>
+    <ion-avatar slot="start">
+      <img src="assets/img/background2.jpg">
+    </ion-avatar>
+    <ion-label>
+      <h2>Name</h2>
+      <p>WCAID</p>
+      <p>Birthday</p>
+      <p>State</p>
+    </ion-label>
+  </ion-item>
+
+  <ion-segment color="primary" [(ngModel)]="type" (ionChange)="segmentChanged($event)" scrollable>
+    <ion-segment-button value="records" checked>
+      <ion-label>Records</ion-label>
+      <ion-icon name="ribbon-outline"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="tourneys">
+      <ion-label>Torneos</ion-label>
+      <ion-icon name="trophy-outline"></ion-icon>
+    </ion-segment-button>
+  </ion-segment>
+
+
+  <div [ngSwitch]="type">
+    <ion-list *ngSwitchCase="'records'">
+      <ion-card>
+        <ion-grid>
+          <ion-row style="text-align:center;">
+            <ion-col width="4">
+              <img src="assets/img/background4.jpg">
+            </ion-col>
+            <ion-col width="3">
+              <h2>Single</h2>
+              <p>10</p>
+            </ion-col>
+            <ion-col width="3">
+              <h2>Avg</h2>
+              <p>11</p>
+            </ion-col>
+            <ion-col width="2">
+              <h2>ER</h2>
+              <p>1</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'tourneys'">
+      <ion-card>
+        <img src="assets/img/background3.jpg" />
+        <ion-card-header>
+          <ion-card-subtitle>Destination</ion-card-subtitle>
+          <ion-card-title>Madison, WI</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the
+          Wisconsin Territory in 1836.
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+
+  </div>
 
 </ion-content>

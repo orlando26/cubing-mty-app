@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccountPage implements OnInit {
 
+  type: string;
+
   constructor() { }
 
   ngOnInit() {
+    this.type = 'records';
+  }
+
+  segmentChanged(ev: any) {
+    console.log('Segment changed', ev);
   }
 
 }
