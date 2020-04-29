@@ -35,4 +35,14 @@ interface City {
   name: '';
 }
 
+interface Solve {
+  id: number;
+  userId: number;
+  time: number;
+  scramble: string;
+  cube: string;
+  dnf: boolean;
+  plus2: boolean;
+}
+
 
