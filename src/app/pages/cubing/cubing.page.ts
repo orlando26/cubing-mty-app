@@ -76,7 +76,6 @@ export class CubingPage implements OnInit {
   onPressUpContent($event) {
     let txt_timer = document.getElementsByTagName('h1')[0];
     let timer_class = txt_timer.className;
-    console.log("AQUI: " + timer_class);
 
     if (timer_class == "time-normal"){
       this.stopWaiting();
@@ -88,13 +87,11 @@ export class CubingPage implements OnInit {
 
   startWaiting() {
     this.previousTime = this.time;
-    console.log(this.previousTime);
     const self = this;
     self.time = '00' + ':' + '00' + '.' + '00';
 
     this.readyInterval = setInterval(function () {
       self.readyTime = self.readyTime + 1;
-      console.log(self.readyTime);
       
       if (self.readyTime >= self.waitTime){
         // Style when ready
@@ -108,7 +105,6 @@ export class CubingPage implements OnInit {
   stopWaiting() {
     let txt_timer = document.getElementsByTagName('h1')[0];
     clearInterval(this.readyInterval);
-    console.log(this.readyTime);
     if (this.readyTime < this.waitTime){    // not ready ):
       this.time = this.previousTime;
     } 
