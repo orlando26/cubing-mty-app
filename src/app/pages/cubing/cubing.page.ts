@@ -29,7 +29,7 @@ export class CubingPage implements OnInit {
   solvingTimer: any;
 
   readyTime = 0;
-  waitTime = 1;
+  waitTime = 0.5;
 
   statsLeft = 'Media: N/A\nMejor: N/A\nPeor: N/A\nSolves: N/A';
   statsRight = 'Ao5: N/A\nAo12: N/A\nAo50: N/A\nAo100: N/A';
@@ -66,6 +66,7 @@ export class CubingPage implements OnInit {
 
     if (timer_class == "time-normal"){
       this.readyTime = 0;
+      txt_timer.className = "time-notReady";
       this.startWaiting();
 
     } else if (timer_class == "time-running") {
@@ -77,7 +78,7 @@ export class CubingPage implements OnInit {
     let txt_timer = document.getElementsByTagName('h1')[0];
     let timer_class = txt_timer.className;
 
-    if (timer_class == "time-normal"){
+    if (timer_class == "time-notReady"){
       this.stopWaiting();
       
     } else if (timer_class == "time-ready") {
@@ -91,7 +92,7 @@ export class CubingPage implements OnInit {
     self.time = '00' + ':' + '00' + '.' + '00';
 
     this.readyInterval = setInterval(function () {
-      self.readyTime = self.readyTime + 1;
+      self.readyTime = self.readyTime + 0.5;
       
       if (self.readyTime >= self.waitTime){
         // Style when ready
@@ -99,7 +100,7 @@ export class CubingPage implements OnInit {
         let txt_timer = document.getElementsByTagName('h1')[0];
         txt_timer.className = "time-ready";
       }
-    }, 1000);
+    }, 500);
   }
 
   stopWaiting() {
@@ -107,6 +108,7 @@ export class CubingPage implements OnInit {
     clearInterval(this.readyInterval);
     if (this.readyTime < this.waitTime){    // not ready ):
       this.time = this.previousTime;
+      txt_timer.className = "time-normal";
     } 
   }
   
@@ -149,5 +151,9 @@ export class CubingPage implements OnInit {
         this.scramble = res;
       }
     );
+  }
+
+  changeTourney(){
+
   }
 }

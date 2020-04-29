@@ -12,15 +12,6 @@ import { AppComponent } from './app.component';
 
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 
-// export class MyHammerConfig extends HammerGestureConfig  {
-//   overrides = <any>{
-//       'press': {
-//            time: 300,
-//           //  threshold: 1000,
-//       },
-//   }
-// }
-
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -29,7 +20,6 @@ import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-br
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    // { provide: HAMMER_GESTURE_CONFIG, useClass: MyHammerConfig }
   ],
   bootstrap: [AppComponent]
 })

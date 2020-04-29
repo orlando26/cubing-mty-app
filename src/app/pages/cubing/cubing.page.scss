@@ -103,7 +103,12 @@ ion-fab-button {
 .time-ready {
     @extend .time-normal;
     font-size: $font-xlarge;
-    color: var(--ion-color-warning);
+    color: var(--ion-color-success);
+}
+
+.time-notReady {
+    @extend .time-normal;
+    color: var(--ion-color-danger);
 }
 
 .time-running {
