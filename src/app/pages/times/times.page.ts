@@ -4,6 +4,7 @@ import { ScrambleService } from 'src/app/services/scramble.service';
 import { CatalogsService } from 'src/app/services/catalogs.service';
 import { PopoverController } from '@ionic/angular';
 import { SolveOptionsComponent } from 'src/app/components/solve-options/solve-options.component';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-times',
@@ -20,7 +21,10 @@ export class TimesPage implements OnInit {
 
   order = 'time';
 
-  constructor(private solvesApi: SolvesService, private catalogsApi: CatalogsService, private popoverController: PopoverController) { }
+  constructor(private solvesApi: SolvesService,
+              private catalogsApi: CatalogsService,
+              private popoverController: PopoverController,
+              private userApi: UserService) { }
 
   ngOnInit() {
   }
@@ -31,7 +35,7 @@ export class TimesPage implements OnInit {
         this.cubesList = res;
       }
     );
-    this.solvesApi.getByCubeAndUser(this.selectedCube, 1, this.order).subscribe(
+    this.solvesApi.getByCubeAndUser(this.selectedCube, this.userApi.currentUser.id, this.order).subscribe(
       res => {
         this.solves = res;
       }

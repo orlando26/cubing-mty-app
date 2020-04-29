@@ -20,6 +20,7 @@ export class RegisterPage implements OnInit {
   cities: City[] = [];
 
   user: User = {
+    id: 0,
     name: '',
     lastname: '',
     nickname: '',

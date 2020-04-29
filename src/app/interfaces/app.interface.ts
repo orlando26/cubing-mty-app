@@ -5,6 +5,7 @@ interface Scramble {
 }
 
 interface User {
+  id: number;
   birthday: string;
   cityId: number;
   email: string;
@@ -42,6 +43,7 @@ interface Solve {
   plus2:	boolean;
   scramble:	string;
   time:	number;
+  timeStr: string;
   userId:	number;
 }
 
