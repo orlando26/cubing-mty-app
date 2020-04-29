@@ -1,39 +1,32 @@
-<!-- <ion-content name="timing_content" (click)="clickContent($event)" (press)="ready()" (pressup)="startTimer()"> -->
-<!-- <ion-content id="mycontent" name="timing_content" (click)="clickContent($event)" (press)="onPressTimingArea($event)" (panstart)="onPressTimingArea($event)" (pressup)="onPressUpTimingArea($event)" (panend)="onPressUpTimingArea($event)"> -->
-<!-- <ion-content id="mycontent" name="timing_content" (click)="clickContent($event)" (press)="onPressTimingArea($event)" (pressup)="onPressUpTimingArea($event)" (panend)="onPressUpTimingArea($event)"> -->
-<ion-content id="mycontent" name="timing_content" (click)="clickContent($event)" (press)="onPressTimingArea($event)" (pressup)="onPressUpTimingArea($event)" (panend)="onPressUpTimingArea($event)">
+<ion-content name="timing-area" (touchstart)="onPressContent($event)" (touchend)="onPressUpContent($event)">
 
-    <div class="timing-area" name="timing_div">
-
+    <div class="timing-area">
         <ion-grid>
-            <ion-row class="text-timer">
-                <h1 name="timing_content" class="content time-normal">{{time}}</h1>
+            <ion-row>
+                <h1 class="time-normal">{{time}}</h1>
             </ion-row>
         </ion-grid>
     </div>
 
-    <ion-card name="timing_card" class="content scramble" color="transparent">
-        <span name="txt_scramble">{{scramble.rawSequence}}</span>
-    </ion-card>
-
-    <ion-toolbar class="footer" color="transparent" [hidden]="hideComponents">
+    <ion-toolbar class="stats" color="transparent" [hidden]="hideComponents">
         <ion-grid>
             <ion-row>
                 <ion-col>
-                    <pre class="stats" style="text-align: start">{{statsLeft}}</pre>
+                    <pre style="text-align: start">{{statsLeft}}</pre>
                 </ion-col>
                 <ion-col>
-                    <pre class="stats" style="text-align: end">{{statsRight}}</pre>
+                    <pre style="text-align: end">{{statsRight}}</pre>
                 </ion-col>
             </ion-row>
         </ion-grid>
     </ion-toolbar>
+
 </ion-content>
 
-<ion-fab [hidden]="hideComponents" class="header-fab">
-    <ion-card class="header-card" color="dark">
+<ion-fab class="header-fab" [hidden]="hideComponents">
+    <ion-card class="header-card">
         <ion-grid>
-            <ion-row class="stretch-vertically">
+            <ion-row>
                 <ion-col class="center-horizontally">
                     <ion-item class="stretch-vertically" color="dark" lines="none">
                         <ion-select placeholder="3x3x3" (ionChange)="nextScramble()" [(ngModel)]="selectedCube">
@@ -43,7 +36,7 @@
                 </ion-col>
             </ion-row>
 
-            <ion-row class="stretch-vertically">
+            <ion-row>
                 <ion-col class="center-horizontally">
                     <ion-item class="stretch-vertically" color="dark" lines="none">
                         <ion-select class="select-tourney" placeholder="Global" (ionChange)="changeTourney()" [(ngModel)]="selectedTourney">
@@ -55,19 +48,23 @@
         </ion-grid>
     </ion-card>
 
-    <ion-card class="action-buttons" color="dark">
-        <ion-grid class="content solve-actions">
-            <ion-row class="buttons">
+    <ion-card name="timing_card" class="scramble">
+        <span>{{scramble.rawSequence}}</span>
+    </ion-card>
+
+    <ion-card class="penalties">
+        <ion-grid>
+            <ion-row>
                 <ion-col name="timing_col">
-                    <ion-fab-button class="actions" name="btn_delete" shape="round">
-                        <ion-icon name="close-outline"></ion-icon>
+                    <ion-fab-button shape="round">
+                        <ion-icon name="trash"></ion-icon>
                     </ion-fab-button>
                 </ion-col>
                 <ion-col>
-                    <ion-fab-button class="actions" name="btn_dnf" shape="round">DNF</ion-fab-button>
+                    <ion-fab-button shape="round">DNF</ion-fab-button>
                 </ion-col>
                 <ion-col>
-                    <ion-fab-button class="actions" name="btn_plus2" shape="round">+2</ion-fab-button>
+                    <ion-fab-button shape="round">+2</ion-fab-button>
                 </ion-col>
             </ion-row>
         </ion-grid>
