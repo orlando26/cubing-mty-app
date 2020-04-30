@@ -2,7 +2,6 @@ import { ScrambleService } from './../../services/scramble.service';
 import { CatalogsService } from './../../services/catalogs.service';
 import { TourneysService } from './../../services/tourneys.service';
 import { Component, OnInit } from '@angular/core';
-import { read } from 'fs';
 
 @Component({
   selector: 'app-cubing',
