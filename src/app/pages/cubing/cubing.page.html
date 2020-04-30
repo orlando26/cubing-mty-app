@@ -29,7 +29,7 @@
             <ion-row>
                 <ion-col class="center-horizontally">
                     <ion-item class="stretch-vertically" color="dark" lines="none">
-                        <ion-select placeholder="3x3x3" (ionChange)="nextScramble()" [(ngModel)]="selectedCube">
+                        <ion-select placeholder="Categoría" (ionChange)="nextScramble()" [(ngModel)]="selectedCube">
                             <ion-select-option *ngFor="let cube of cubesList" [value]="cube">{{cube}}</ion-select-option>
                         </ion-select>
                     </ion-item>
@@ -39,8 +39,8 @@
             <ion-row>
                 <ion-col class="center-horizontally">
                     <ion-item class="stretch-vertically" color="dark" lines="none">
-                        <ion-select class="select-tourney" placeholder="Global" (ionChange)="changeTourney()" [(ngModel)]="selectedTourney">
-                            <ion-select-option *ngFor="let tourney of tourneysList" [value]="tourney.id">{{tourney.name}}</ion-select-option>
+                        <ion-select class="select-tourney" placeholder="Torneo" (ionChange)="changeTourney()" [(ngModel)]="selectedTourney">
+                            <ion-select-option *ngFor="let tourney of tourneysList" [value]="tourney.name">{{tourney.name}}</ion-select-option>
                         </ion-select>
                     </ion-item>
                 </ion-col>
@@ -56,7 +56,7 @@
         <ion-grid>
             <ion-row>
                 <ion-col name="timing_col">
-                    <ion-fab-button shape="round">
+                    <ion-fab-button (click)="deleteSolve()" shape="round">
                         <ion-icon name="trash"></ion-icon>
                     </ion-fab-button>
                 </ion-col>

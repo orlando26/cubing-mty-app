@@ -2,6 +2,7 @@ import { ScrambleService } from './../../services/scramble.service';
 import { CatalogsService } from './../../services/catalogs.service';
 import { TourneysService } from './../../services/tourneys.service';
 import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cubing',
@@ -39,7 +40,8 @@ export class CubingPage implements OnInit {
   constructor(
     private catalogsApi: CatalogsService,   
     private scrambleApi: ScrambleService,
-    private tourneysApi: TourneysService) { }
+    private tourneysApi: TourneysService,
+    public alertController: AlertController) { }
 
   ngOnInit() {
     this.catalogsApi.getCubesList().subscribe(
@@ -152,7 +154,30 @@ export class CubingPage implements OnInit {
     );
   }
 
-  changeTourney(){
+  async deleteSolve(){
+    if (this.time != "00:00.00"){
+      const alert = await this.alertController.create({
+        message: '¿Quieres borrar el solve?',
+        subHeader: 'Tiempo: ' + String(this.time),
+        buttons: ['Cancelar',
+          {
+            text: 'Borrar',
+            handler: () => {
+                this.time = "00:00.00";
+                console.log('Delete clicked');
+            }
+          }
+        ]
+      });
+      await alert.present();
+    }
+  }
 
+  changeTourney(){
+    // this.tourneysApi.getTourneys(this.selectedTourney).subscribe(
+    //   res => {
+    //     this.khe = res;
+    //   }
+    // );
   }
 }
