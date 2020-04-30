@@ -22,8 +22,12 @@ export class CubingPage implements OnInit {
     scramblerId: ''
   };
 
-  time = '00:00.00';
+  time = '03:59.59';
+  normalTime = this.time;
   previousTime = '00:00.00';
+
+  dnf = false;
+  plus2 = false;
 
   readyInterval: any;
   solvingTimer: any;
@@ -171,6 +175,47 @@ export class CubingPage implements OnInit {
       });
       await alert.present();
     }
+  }
+
+  plus2Solve(){
+    if (this.time != "00:00.00" && !this.plus2){
+
+      this.normalTime = this.time;
+      this.plus2 = true;
+
+      let seconds_int = parseInt(this.time.substring(3,5)) + 2;
+      let minutes_int = parseInt(this.time.substring(0,2));
+
+      if (seconds_int >= 60){
+        seconds_int = seconds_int - 60;
+        minutes_int = minutes_int + 1;
+      }
+
+      let seconds_str = ('00' + String(seconds_int)).slice(-2)
+      let minutes_str = ('00' + String(minutes_int)).slice(-2);
+      this.time = (minutes_str + ':' +
+                   seconds_str + '.' + 
+                   this.time.substring(6,8));
+      
+    } else if (this.plus2) {
+      this.plus2 = false;
+      this.time = this.normalTime;
+    }
+    console.log('+2: ' + this.plus2);
+  }
+
+  dnfSolve(){
+    console.log(this.time);
+    if (this.time != "00:00.00" && !this.dnf){
+      this.dnf = true;
+      this.normalTime = this.time;
+      this.time = 'DNF';
+
+    } else if (this.dnf){
+      this.dnf = false;
+      this.time = this.normalTime;
+    }
+    console.log('DNF: ' + this.dnf);
   }
 
   changeTourney(){
