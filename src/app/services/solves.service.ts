@@ -10,6 +10,6 @@ export class SolvesService {
   constructor(private http: HttpClient) { }
 
   getBestSolve(userId: number, cube: string){
-    return this.http.get<Solve>(this.uri + 'bestbyUserAndCube/' + userId +  ',' + cube);
+    return this.http.get<Solve[]>(this.uri + 'bestbyUserAndCube/' + userId +  ',' + cube);
   }
 }

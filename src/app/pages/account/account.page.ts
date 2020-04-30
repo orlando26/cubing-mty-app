@@ -38,8 +38,19 @@ export class AccountPage implements OnInit {
     plus2: false
   };
 
+  s3x3: Solve[] = [this.solve];
+  s2x2: Solve[] = [this.solve];
+  s4x4: Solve[] = [this.solve];
+  s5x5: Solve[] = [this.solve];
+  s6x6: Solve[] = [this.solve];
+  s7x7: Solve[] = [this.solve];
+  smega: Solve[] = [this.solve];
+  spyra: Solve[] = [this.solve];
+  sskewb: Solve[] = [this.solve];
+  ssq1: Solve[] = [this.solve];
 
-  constructor(private userApi: UserService, private solveApi: SolvesService) { }
+  constructor(private userApi: UserService, private solveApi: SolvesService) {
+  }
 
   ngOnInit() {
     this.type = 'records';
@@ -51,6 +62,13 @@ export class AccountPage implements OnInit {
     console.log('Segment changed', ev);
   }
 
+  doRefresh(event) {
+    setTimeout(() => {
+      this.getBestSolve();
+      event.target.complete();
+    }, 2000);
+  }
+
   getUser() {
     this.userApi.getUser(this.selecteduserId).subscribe(
       res => {
@@ -60,11 +78,86 @@ export class AccountPage implements OnInit {
   }
 
   getBestSolve() {
-    this.solveApi.getBestSolve(this.selecteduserId, this.selectedcube).subscribe(
+    this.solveApi.getBestSolve(this.selecteduserId, "3x3x3").subscribe(
       res => {
-        this.solve = res;
+        if (res.length!=0){
+        this.s3x3 = res;
+        }
       }
     );
+
+    this.solveApi.getBestSolve(this.selecteduserId, "2x2x2").subscribe(
+      res => {
+        if (res.length!=0){
+        this.s2x2 = res;
+        }
+      }
+    );
+
+    this.solveApi.getBestSolve(this.selecteduserId, "4x4x4").subscribe(
+      res => {
+        if (res.length!=0){
+        this.s4x4 = res;
+        }
+      }
+    );
+
+    this.solveApi.getBestSolve(this.selecteduserId, "5x5x5").subscribe(
+      res => {
+        if (res.length!=0){
+        this.s5x5 = res;
+        }
+      }
+    );
+
+    this.solveApi.getBestSolve(this.selecteduserId, "6x6x6").subscribe(
+      res => {
+        if (res.length!=0){
+        this.s6x6 = res;
+        }
+      }
+    );
+
+    this.solveApi.getBestSolve(this.selecteduserId, "7x7x7").subscribe(
+      res => {
+        if (res.length!=0){
+        this.s7x7 = res;
+        }
+      }
+    );
+
+    this.solveApi.getBestSolve(this.selecteduserId, "MEGAMINX").subscribe(
+      res => {
+        if (res.length!=0){
+       this.smega = res;
+        }
+      }
+    );
+
+    this.solveApi.getBestSolve(this.selecteduserId, "PYRAMINX").subscribe(
+      res => {
+        if (res.length!=0){
+        this.spyra = res;
+        }
+      }
+    );
+
+    this.solveApi.getBestSolve(this.selecteduserId, "SKEWB").subscribe(
+      res => {
+        if (res.length!=0){
+        this.sskewb = res;
+        }
+      }
+    );
+
+    this.solveApi.getBestSolve(this.selecteduserId, "SQUARE-1").subscribe(
+      res => {
+        if (res.length!=0){
+        this.ssq1 = res;
+        }
+      }
+    );
+
   }
 
 }
