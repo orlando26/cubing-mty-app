@@ -18,6 +18,18 @@ interface User {
   wcaId: string;
 }
 
+interface Solve {
+  cube: string;
+  date: string;
+  dnf: boolean;
+  plus2: boolean;
+  id: number;
+  scramble: string;
+  time: number;
+  timeStr: string;
+  userId: number;
+}
+
 interface Tourney {
   id: number;
   name: string;

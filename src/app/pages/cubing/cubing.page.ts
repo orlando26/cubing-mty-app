@@ -3,6 +3,8 @@ import { CatalogsService } from './../../services/catalogs.service';
 import { TourneysService } from './../../services/tourneys.service';
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { SolveService } from './../../services/solve.service';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-cubing',
@@ -14,27 +16,44 @@ export class CubingPage implements OnInit {
 
   cubesList: string[] = [];
   tourneysList: Tourney[] = [];
+
   scramble: Scramble = {
     sequence: [],
     rawSequence: '',
     scramblerId: ''
   };
 
+  solve: Solve = {
+    cube: '',
+    date: '',
+    dnf: false,
+    plus2: false,
+    id: 0,
+    scramble: '',
+    time: 0,
+    timeStr: '',
+    userId: 1,
+  }
+
+  response: any = {
+    entity: {},
+    responsetext: '',
+    status: ''
+  };
+
   hideComponents = false;
 
   time = '00:00.00';
   previousTime = '00:00.00';
-
   nonPenaltyTime = '00:00.00';
-  dnf = false;
-  plus2 = false;
-  delete = false;
+
+  allowDelete = false;
 
   readyInterval: any;
   solvingTimer: any;
 
-  readyTime = 0;
-  waitTime = 0.5;
+  waitedTime = 0;
+  time2wait = 0.5;
 
   statsLeft = 'Media: N/A\nMejor: N/A\nPeor: N/A\nSolves: N/A';
   statsRight = 'Ao5: N/A\nAo12: N/A\nAo50: N/A\nAo100: N/A';
@@ -46,6 +65,8 @@ export class CubingPage implements OnInit {
     private catalogsApi: CatalogsService,   
     private scrambleApi: ScrambleService,
     private tourneysApi: TourneysService,
+    private solveApi: SolveService,
+    public toastService: ToastService,
     public alertController: AlertController) { }
 
   ngOnInit() {
@@ -54,7 +75,6 @@ export class CubingPage implements OnInit {
         this.cubesList = res;
       }
     );
-
     this.tourneysApi.getTourneys().subscribe(
       res => {
         this.tourneysList = res;
@@ -66,24 +86,20 @@ export class CubingPage implements OnInit {
     this.nextScramble();
   }
   
-  onPressContent($event) {
+  onTouchArea() {
     let txt_timer = document.getElementsByTagName('h1')[0];
     let timer_class = txt_timer.className;
 
     if (timer_class == 'time-normal'){
-      this.readyTime = 0;
       txt_timer.className = 'time-notReady';
       this.startWaiting();
 
     } else if (timer_class == 'time-running') {
       this.stopTimer();
-      this.dnf = false;
-      this.plus2 = false;
-      this.delete = true;
     }
   }
 
-  onPressUpContent($event) {
+  onReleaseArea() {
     let txt_timer = document.getElementsByTagName('h1')[0];
     let timer_class = txt_timer.className;
 
@@ -91,21 +107,35 @@ export class CubingPage implements OnInit {
       this.stopWaiting();
       
     } else if (timer_class == 'time-ready') {
+      console.log('\nPREVIOUS TIME: ' + this.previousTime);
+
+      if (this.previousTime != '00:00.00'){
+        this.sendSolve();
+      }
+
       this.startTimer();
-      this.dnf = false;
-      this.plus2 = false;
+      this.nextScramble();
+      this.solve.dnf = false;
+      this.solve.plus2 = false;
     }
   }
 
   startWaiting() {
-    this.previousTime = this.time;
+    this.waitedTime = 0;
+
+    if (this.time == 'DNF'){
+      this.previousTime = this.nonPenaltyTime;
+    } else {
+      this.previousTime = this.time;
+    }
+    console.log(this.previousTime);
     const self = this;
     self.time = '00' + ':' + '00' + '.' + '00';
 
     this.readyInterval = setInterval(function () {
-      self.readyTime = self.readyTime + 0.5;
+      self.waitedTime = self.waitedTime + 0.5;
       
-      if (self.readyTime >= self.waitTime){
+      if (self.waitedTime >= self.time2wait){
         self.hideComponents = true;
         let txt_timer = document.getElementsByTagName('h1')[0];
         txt_timer.className = 'time-ready';
@@ -117,7 +147,7 @@ export class CubingPage implements OnInit {
     let txt_timer = document.getElementsByTagName('h1')[0];
     clearInterval(this.readyInterval);
 
-    if (this.readyTime < this.waitTime){
+    if (this.waitedTime < this.time2wait){
       this.time = this.previousTime;
       txt_timer.className = 'time-normal';
     } 
@@ -127,8 +157,6 @@ export class CubingPage implements OnInit {
     clearInterval(this.readyInterval);
     let txt_timer = document.getElementsByTagName('h1')[0];
     txt_timer.className = 'time-running';
-
-    this.nextScramble();
 
     const t0 = performance.now();
 
@@ -151,11 +179,42 @@ export class CubingPage implements OnInit {
     clearInterval(this.solvingTimer);
     this.hideComponents = false;
     let txt_timer = document.getElementsByTagName('h1')[0];
-     // let timer_class = txt_timer.getAttribute('class');
     txt_timer.className = 'time-normal';
+
+    this.solve.dnf = false;
+    this.solve.plus2 = false;
+    this.allowDelete = true;
+
+    var solvedNow = new Date();
+    this.solve.date = solvedNow.toISOString();
+  }
+
+  sendSolve() {
+    this.solve.timeStr = this.previousTime;
+    this.solve.time = this.timeStr2ms(this.previousTime);
+    console.log(this.solve.time);
+
+    this.solveApi.saveSolve(this.solve).subscribe(
+      res => {
+        this.response = res;
+        console.log(this.response);
+        this.toastService.simpleToast(this.response.responsetext);
+      }
+    );
   }
 
   nextScramble() {
+    var idClicked =(<HTMLInputElement>event.srcElement).id;
+    console.log(idClicked);
+    
+    if (idClicked != 'reload-icon' && idClicked != 'cube-selector'){
+      this.solve.scramble = this.scramble.rawSequence;
+      this.solve.cube = this.selectedCube;
+    }    
+    console.log('PREVIOUS SCRAM: ' + this.solve.scramble);
+    console.log('PREVIOUS CUBE: ' + this.solve.cube);
+    console.log('CURRENT CUBE: ' + this.selectedCube);
+
     this.scrambleApi.getScramble(this.selectedCube).subscribe(
       res => {
         this.scramble = res;
@@ -173,9 +232,9 @@ export class CubingPage implements OnInit {
             text: 'Borrar',
             handler: () => {
                 this.time = '00:00.00';
-                this.dnf = false;
-                this.plus2 = false;
-                this.delete = false;
+                this.solve.dnf = false;
+                this.solve.plus2 = false;
+                this.allowDelete = false;
                 console.log('Delete clicked');
             }
           }
@@ -185,15 +244,39 @@ export class CubingPage implements OnInit {
     }
   }
 
-  plus2Solve(){
-    if (this.dnf){
-      this.dnf = false;
+  dnfSolve(){
+    if (this.solve.plus2){            // mutually exclusive
+      this.solve.plus2 = false;
       this.time = this.nonPenaltyTime;
     }
 
-    if (this.time != '00:00.00' && !this.plus2){
+    if (this.solve.dnf){
+      this.solve.dnf = false;
+      this.time = this.nonPenaltyTime;
+
+    } else if (this.time != '00:00.00'){
+      this.solve.dnf = true;
       this.nonPenaltyTime = this.time;
-      this.plus2 = true;
+      this.time = 'DNF';
+    }
+    console.log('\nNON-PENALTY TIME: ' + this.nonPenaltyTime);
+    console.log('DNF: ' + this.solve.dnf);
+    console.log('+2: ' + this.solve.plus2);
+  }
+
+  plus2Solve(){
+    if (this.solve.dnf){            // mutually exclusive
+      this.solve.dnf = false;
+      this.time = this.nonPenaltyTime;
+    }
+
+    if (this.solve.plus2) {
+      this.solve.plus2 = false;
+      this.time = this.nonPenaltyTime;
+
+    } else if (this.time != '00:00.00'){
+      this.nonPenaltyTime = this.time;
+      this.solve.plus2 = true;
 
       let seconds_int = parseInt(this.time.substring(3,5)) + 2;
       let minutes_int = parseInt(this.time.substring(0,2));
@@ -203,48 +286,24 @@ export class CubingPage implements OnInit {
         minutes_int = minutes_int + 1;
       }
 
+      // Left padding with zeros
       let seconds_str = ('00' + String(seconds_int)).slice(-2)
       let minutes_str = ('00' + String(minutes_int)).slice(-2);
+
       this.time = (minutes_str + ':' +
                    seconds_str + '.' + 
                    this.time.substring(6,8));
-      
-    } else if (this.plus2) {
-      this.plus2 = false;
-      this.time = this.nonPenaltyTime;
-    }
-
-    console.log('Non Penalty time: ' + this.nonPenaltyTime);
-    console.log('DNF: ' + this.dnf);
-    console.log('+2: ' + this.plus2);
+    } 
+    console.log('\nNON-PENALTY TIME: ' + this.nonPenaltyTime);
+    console.log('DNF: ' + this.solve.dnf);
+    console.log('+2: ' + this.solve.plus2);
   }
 
-  dnfSolve(){
-    if (this.plus2){
-      this.plus2 = false;
-      this.time = this.nonPenaltyTime;
-    }
-
-    if (this.time != '00:00.00' && !this.dnf){
-      this.dnf = true;
-      this.nonPenaltyTime = this.time;
-      this.time = 'DNF';
-
-    } else if (this.dnf){
-      this.dnf = false;
-      this.time = this.nonPenaltyTime;
-    }
-
-    console.log('Non Penalty time: ' + this.nonPenaltyTime);
-    console.log('DNF: ' + this.dnf);
-    console.log('+2: ' + this.plus2);
-  }
-
-  changeTourney(){
-    // this.tourneysApi.getTourneys(this.selectedTourney).subscribe(
-    //   res => {
-    //     this.khe = res;
-    //   }
-    // );
+  timeStr2ms(time_string){
+    let minutes_int = parseInt(time_string.substring(0,2));
+    let seconds_int = parseInt(time_string.substring(3,5));
+    let millisecons_int = parseInt(time_string.substring(6,8));
+    
+    return((minutes_int*60 + seconds_int)*1000 + millisecons_int);
   }
 }

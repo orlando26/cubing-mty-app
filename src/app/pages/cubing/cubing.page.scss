@@ -64,6 +64,14 @@ ion-card.penalties {
     background-color: transparent;
 }
 
+.reload-button {
+    color: var(--ion-color-light-shade);
+    position: absolute;
+    top: 2em;
+    right: 5%;
+    font-size: $font-medium;
+}
+
 ion-fab-button {
     width: 3em;
     height: 2em;
@@ -73,14 +81,6 @@ ion-fab-button {
     ion-icon {
         font-size: $font-medium;
     }
-}
-
-.reload-button {
-    color: var(--ion-color-light-shade);
-    position: absolute;
-    top: 2em;
-    right: 5%;
-    font-size: $font-medium;
 }
 
 .delete-button {
