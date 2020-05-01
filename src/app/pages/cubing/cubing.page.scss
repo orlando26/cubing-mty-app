@@ -69,12 +69,39 @@ ion-fab-button {
     height: 2em;
     font-size: $font-small;
     --box-shadow: none !important;
-    --background: none !important;
-    --background-activated: none !important;
     font-weight: bold;
     ion-icon {
         font-size: $font-medium;
     }
+}
+
+.reload-button {
+    color: var(--ion-color-light-shade);
+    position: absolute;
+    top: 2em;
+    right: 5%;
+    font-size: $font-medium;
+}
+
+.delete-button {
+    @extend ion-fab-button;
+    --color: var(--ion-color-light-shade);
+    --background: none;
+    --background-activated: none;
+}
+
+.penalty-true {
+    @extend ion-fab-button;
+    --color: var(--ion-color-light);
+    --background: var(--ion-color-dark-shade);
+    --background-activated: var(--ion-color-dark-shade);
+}
+
+.penalty-false {
+    @extend ion-fab-button;
+    --background: none;
+    --background-activated: none;
+    --color: var(--ion-color-medium);
 }
 
 .scramble {

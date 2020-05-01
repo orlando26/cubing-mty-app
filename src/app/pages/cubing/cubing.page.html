@@ -48,23 +48,26 @@
         </ion-grid>
     </ion-card>
 
+
     <ion-card name="timing_card" class="scramble">
         <span>{{scramble.rawSequence}}</span>
     </ion-card>
+
+    <ion-icon name="sync-sharp" class="reload-button" (click)="nextScramble()"></ion-icon>
 
     <ion-card class="penalties">
         <ion-grid>
             <ion-row>
                 <ion-col name="timing_col">
-                    <ion-fab-button (click)="deleteSolve()" shape="round">
+                    <ion-fab-button (click)="deleteSolve()" [ngClass]="{'penalty-false': !delete,'delete-button': delete}" shape="round">
                         <ion-icon name="trash"></ion-icon>
                     </ion-fab-button>
                 </ion-col>
                 <ion-col>
-                    <ion-fab-button (click)="dnfSolve()" shape="round">DNF</ion-fab-button>
+                    <ion-fab-button (click)="dnfSolve()" class="penalty" [ngClass]="{'penalty-false': !dnf,'penalty-true': dnf}" shape="round">DNF</ion-fab-button>
                 </ion-col>
                 <ion-col>
-                    <ion-fab-button (click)="plus2Solve()" shape="round">+2</ion-fab-button>
+                    <ion-fab-button (click)="plus2Solve()" class="penalty" [ngClass]="{'penalty-false': !plus2,'penalty-true': plus2}" shape="round">+2</ion-fab-button>
                 </ion-col>
             </ion-row>
         </ion-grid>

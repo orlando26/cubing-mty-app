@@ -28,6 +28,7 @@ export class CubingPage implements OnInit {
   nonPenaltyTime = '00:00.00';
   dnf = false;
   plus2 = false;
+  delete = false;
 
   readyInterval: any;
   solvingTimer: any;
@@ -78,6 +79,7 @@ export class CubingPage implements OnInit {
       this.stopTimer();
       this.dnf = false;
       this.plus2 = false;
+      this.delete = true;
     }
   }
 
@@ -171,13 +173,14 @@ export class CubingPage implements OnInit {
             text: 'Borrar',
             handler: () => {
                 this.time = '00:00.00';
+                this.dnf = false;
+                this.plus2 = false;
+                this.delete = false;
                 console.log('Delete clicked');
             }
           }
         ]
       });
-      this.dnf = false;
-      this.plus2 = false;
       await alert.present();
     }
   }
@@ -210,11 +213,13 @@ export class CubingPage implements OnInit {
       this.plus2 = false;
       this.time = this.nonPenaltyTime;
     }
+
+    console.log('Non Penalty time: ' + this.nonPenaltyTime);
+    console.log('DNF: ' + this.dnf);
     console.log('+2: ' + this.plus2);
   }
 
   dnfSolve(){
-    console.log(this.time);
     if (this.plus2){
       this.plus2 = false;
       this.time = this.nonPenaltyTime;
@@ -229,7 +234,10 @@ export class CubingPage implements OnInit {
       this.dnf = false;
       this.time = this.nonPenaltyTime;
     }
+
+    console.log('Non Penalty time: ' + this.nonPenaltyTime);
     console.log('DNF: ' + this.dnf);
+    console.log('+2: ' + this.plus2);
   }
 
   changeTourney(){
