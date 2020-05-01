@@ -12,8 +12,6 @@ import { AlertController } from '@ionic/angular';
 
 export class CubingPage implements OnInit {
 
-  hideComponents = false;
-
   cubesList: string[] = [];
   tourneysList: Tourney[] = [];
   scramble: Scramble = {
@@ -22,10 +20,12 @@ export class CubingPage implements OnInit {
     scramblerId: ''
   };
 
-  time = '03:59.59';
-  normalTime = this.time;
+  hideComponents = false;
+
+  time = '00:00.00';
   previousTime = '00:00.00';
 
+  nonPenaltyTime = '00:00.00';
   dnf = false;
   plus2 = false;
 
@@ -69,13 +69,15 @@ export class CubingPage implements OnInit {
     let txt_timer = document.getElementsByTagName('h1')[0];
     let timer_class = txt_timer.className;
 
-    if (timer_class == "time-normal"){
+    if (timer_class == 'time-normal'){
       this.readyTime = 0;
-      txt_timer.className = "time-notReady";
+      txt_timer.className = 'time-notReady';
       this.startWaiting();
 
-    } else if (timer_class == "time-running") {
+    } else if (timer_class == 'time-running') {
       this.stopTimer();
+      this.dnf = false;
+      this.plus2 = false;
     }
   }
 
@@ -83,11 +85,13 @@ export class CubingPage implements OnInit {
     let txt_timer = document.getElementsByTagName('h1')[0];
     let timer_class = txt_timer.className;
 
-    if (timer_class == "time-notReady"){
+    if (timer_class == 'time-notReady'){
       this.stopWaiting();
       
-    } else if (timer_class == "time-ready") {
+    } else if (timer_class == 'time-ready') {
       this.startTimer();
+      this.dnf = false;
+      this.plus2 = false;
     }
   }
 
@@ -100,10 +104,9 @@ export class CubingPage implements OnInit {
       self.readyTime = self.readyTime + 0.5;
       
       if (self.readyTime >= self.waitTime){
-        // Style when ready
         self.hideComponents = true;
         let txt_timer = document.getElementsByTagName('h1')[0];
-        txt_timer.className = "time-ready";
+        txt_timer.className = 'time-ready';
       }
     }, 500);
   }
@@ -111,17 +114,17 @@ export class CubingPage implements OnInit {
   stopWaiting() {
     let txt_timer = document.getElementsByTagName('h1')[0];
     clearInterval(this.readyInterval);
-    if (this.readyTime < this.waitTime){    // not ready ):
+
+    if (this.readyTime < this.waitTime){
       this.time = this.previousTime;
-      txt_timer.className = "time-normal";
+      txt_timer.className = 'time-normal';
     } 
   }
   
   startTimer() {
-    // Style when timing
     clearInterval(this.readyInterval);
     let txt_timer = document.getElementsByTagName('h1')[0];
-    txt_timer.className = "time-running";
+    txt_timer.className = 'time-running';
 
     this.nextScramble();
 
@@ -147,7 +150,7 @@ export class CubingPage implements OnInit {
     this.hideComponents = false;
     let txt_timer = document.getElementsByTagName('h1')[0];
      // let timer_class = txt_timer.getAttribute('class');
-    txt_timer.className = "time-normal";
+    txt_timer.className = 'time-normal';
   }
 
   nextScramble() {
@@ -159,7 +162,7 @@ export class CubingPage implements OnInit {
   }
 
   async deleteSolve(){
-    if (this.time != "00:00.00"){
+    if (this.time != '00:00.00'){
       const alert = await this.alertController.create({
         message: '¿Quieres borrar el solve?',
         subHeader: 'Tiempo: ' + String(this.time),
@@ -167,20 +170,26 @@ export class CubingPage implements OnInit {
           {
             text: 'Borrar',
             handler: () => {
-                this.time = "00:00.00";
+                this.time = '00:00.00';
                 console.log('Delete clicked');
             }
           }
         ]
       });
+      this.dnf = false;
+      this.plus2 = false;
       await alert.present();
     }
   }
 
   plus2Solve(){
-    if (this.time != "00:00.00" && !this.plus2){
+    if (this.dnf){
+      this.dnf = false;
+      this.time = this.nonPenaltyTime;
+    }
 
-      this.normalTime = this.time;
+    if (this.time != '00:00.00' && !this.plus2){
+      this.nonPenaltyTime = this.time;
       this.plus2 = true;
 
       let seconds_int = parseInt(this.time.substring(3,5)) + 2;
@@ -199,21 +208,26 @@ export class CubingPage implements OnInit {
       
     } else if (this.plus2) {
       this.plus2 = false;
-      this.time = this.normalTime;
+      this.time = this.nonPenaltyTime;
     }
     console.log('+2: ' + this.plus2);
   }
 
   dnfSolve(){
     console.log(this.time);
-    if (this.time != "00:00.00" && !this.dnf){
+    if (this.plus2){
+      this.plus2 = false;
+      this.time = this.nonPenaltyTime;
+    }
+
+    if (this.time != '00:00.00' && !this.dnf){
       this.dnf = true;
-      this.normalTime = this.time;
+      this.nonPenaltyTime = this.time;
       this.time = 'DNF';
 
     } else if (this.dnf){
       this.dnf = false;
-      this.time = this.normalTime;
+      this.time = this.nonPenaltyTime;
     }
     console.log('DNF: ' + this.dnf);
   }
