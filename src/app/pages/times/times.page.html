@@ -1,17 +1,35 @@
-<ion-content>
-  <ion-item>
-    <ion-label>Cubo</ion-label>
-    <ion-select (ionChange)="changeCube()" [(ngModel)]="selectedCube" placeholder="3x3x3">
-      <ion-select-option *ngFor="let cube of cubesList"  [value]="cube">{{cube}}</ion-select-option>
-    </ion-select>
-  </ion-item>
+<ion-content >
+  <ion-card class="header-card">
+    <ion-grid>
+        <ion-row>
+            <ion-col class="center-horizontally">
+                <ion-item class="stretch-vertically" color="dark" lines="none">
+                    <ion-select id="cube-selector" placeholder="Categoría" (ionChange)="changeCube()" [(ngModel)]="selectedCube">
+                        <ion-select-option *ngFor="let cube of cubesList" [value]="cube">{{cube}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col class="center-horizontally">
+                <ion-item class="stretch-vertically" color="dark" lines="none">
+                    <ion-select class="select-tourney" placeholder="Torneo" [(ngModel)]="selectedTourney">
+                        <ion-select-option>Global</ion-select-option>
+                        <!-- <ion-select-option *ngFor="let tourney of tourneysList" [value]="tourney.name">{{tourney.name}}</ion-select-option> -->
+                    </ion-select>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-card>
 
   <ion-toolbar>
-    <ion-segment value="time">
-      <ion-segment-button (click)="orderByTime()" value="time">
-        <ion-icon name="hourglass-outline"></ion-icon>
+    <ion-segment mode="md"  value="time">
+      <ion-segment-button  (click)="orderByTime()" value="time">
+        <ion-icon name="hourglass-outline"></ion-icon> 
       </ion-segment-button>
-      <ion-segment-button (click)="orderByDate()" value="date">
+      <ion-segment-button  (click)="orderByDate()" value="date">
         <ion-icon name="calendar-outline"></ion-icon>
       </ion-segment-button>
     </ion-segment>
@@ -26,15 +44,15 @@
           </ion-col>
           
           <ion-col >
-            <ion-item>
-              <ion-label>
-                {{solve.timeStr}}
-              </ion-label>
+            <ion-item lines="none" color="dark">
+              <p> 
+                {{solve.timeStr}} <span class="date">{{solve.date}}</span>
+              </p>
             </ion-item>
-            <ion-item>
-              <ion-label>
+            <ion-item lines="none" color="dark" >
+              <p>
                 {{solve.scramble}}
-              </ion-label>
+              </p>
             </ion-item>
           </ion-col>
           
@@ -42,8 +60,8 @@
             <ion-row>
               <ion-col></ion-col>
               <ion-col>
-                <ion-button (click)="presentPopover()" class="options-button" size="small" shape="round" fill="outline">
-                  <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+                <ion-button  (click)="optionsPopover($event, solve.id)" class="options-button" size="small" shape="round" fill="outline">
+                  <ion-icon color="light" name="ellipsis-vertical-outline"></ion-icon>
                 </ion-button>
               </ion-col>
               <ion-col></ion-col>

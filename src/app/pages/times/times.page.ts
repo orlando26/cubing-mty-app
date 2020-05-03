@@ -21,6 +21,8 @@ export class TimesPage implements OnInit {
 
   order = 'time';
 
+
+  selectedTourney = 'Global';
   constructor(private solvesApi: SolvesService,
               private catalogsApi: CatalogsService,
               private popoverController: PopoverController,
@@ -42,10 +44,11 @@ export class TimesPage implements OnInit {
     );
   }
 
-  async presentPopover(ev: any) {
+  async optionsPopover(ev: any, id) {
     const popover = await this.popoverController.create({
       component: SolveOptionsComponent,
       event: ev,
+      componentProps: { solveId: id },
       translucent: true
     });
     return await popover.present();
@@ -61,7 +64,7 @@ export class TimesPage implements OnInit {
     this.ionViewWillEnter();
   }
 
-  changeCube(){
+  changeCube() {
     this.ionViewWillEnter();
   }
 

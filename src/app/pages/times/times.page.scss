@@ -1,3 +1,62 @@
+$font-xlarge: 4.5em;
+$font-large: 3.5em;
+$font-medium: 1.2em;
+$font-small: 1em;
+$font-xsmall: 0.9em;
+
+ion-card {
+    background-color: var(--ion-color-dark);
+}
+
 ion-button.options-button{
     --border-color: transparent;
+}
+
+span.date {
+    font-size: 0.85em !important;
+    color: var(--ion-color-medium) !important;
+}
+
+.solve-info {
+    font-size: 1.2em;
+    color: var(--ion-color-dark);
+}
+
+.center-horizontally {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stretch-vertically {
+    margin-top: -0.5em;
+    height: 2em;
+}
+
+.select-tourney {
+    font-size: $font-small;
+}
+
+ion-select {
+    // Stretch cubes/tourneys selectors to content
+    min-width: 3em;
+    max-width: 50em;
+    font-weight: bold;
+    text-align: center;
+    font-size: $font-small;
+}
+
+ion-content {
+    --background: var(--ion-color-dark-tint);
+}
+
+ion-segment {
+    --background: var(--ion-color-dark-tint);
+    
+}
+
+ion-segment-button {
+    --indicator-color: var(--ion-color-medium);
+    --color: var(--ion-color-light);
+    --color-checked: var(--ion-color-medium);
 }

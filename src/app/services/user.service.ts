@@ -11,7 +11,7 @@ export class UserService {
   private uri = 'http://localhost:8080/api/v1/user/';
 
   public currentUser: User = {
-    id: 4,
+    id: 1,
     name: '',
     lastname: '',
     nickname: '',

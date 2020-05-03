@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-solve-options',
@@ -7,8 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SolveOptionsComponent implements OnInit {
 
-  constructor() { }
+  solveId;
 
-  ngOnInit() {}
+  constructor(private navParams: NavParams) { }
+
+  ngOnInit() {
+    this.solveId = this.navParams.get('solveId');
+  }
+
+  plus2() {
+  }
+
+  dnf() {
+
+  }
+
+  delete() {
+
+  }
 
 }
