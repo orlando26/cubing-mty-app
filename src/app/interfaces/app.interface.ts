@@ -5,7 +5,7 @@ interface Scramble {
 }
 
 interface User {
-  userId: number;
+  id: number;
   birthday: string;
   cityId: number;
   email: string;
@@ -37,12 +37,12 @@ interface City {
 
 interface Solve {
   id: number;
-  userId: number;
-  time: number;
-  scramble: string;
-  cube: string;
-  dnf: boolean;
-  plus2: boolean;
+  cube:	string;
+  date:	string;
+  dnf:	boolean;
+  plus2:	boolean;
+  scramble:	string;
+  time:	number;
+  timeStr: string;
+  userId:	number;
 }
-
-
