@@ -14,7 +14,7 @@ export class AccountPage implements OnInit {
   selectedcube = "3x3x3";
 
   user: User = {
-    userId: 1,
+    id: 1,
     name: '',
     lastname: '',
     nickname: '',
@@ -35,7 +35,9 @@ export class AccountPage implements OnInit {
     scramble: '',
     cube: '',
     dnf: true,
-    plus2: false
+    plus2: false,
+    date: '',
+    timeStr: ''
   };
 
   s3x3: Solve[] = [this.solve];
