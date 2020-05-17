@@ -10,7 +10,7 @@ export class ScrambleService {
 
   constructor(private http: HttpClient) { }
 
-  getScramble(cube:string){
+  getScramble(cube: string) {
     return this.http.get<Scramble>(this.uri + cube);
   }
 }

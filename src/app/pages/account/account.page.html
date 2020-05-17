@@ -5,10 +5,290 @@
         <ion-icon slot="icon-only" name="power-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>account</ion-title>
+    <ion-title>Perfil</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+
+  <ion-item>
+    <ion-avatar slot="start">
+      <img src="assets/img/background2.jpg">
+    </ion-avatar>
+    <ion-label>
+      <h2>Name: {{user.name}}</h2>
+      <p>WCAID: {{user.wcaId}}</p>
+      <p>Birthday: {{user.birthday}}</p>
+      <p>Email: {{user.email}}</p>
+    </ion-label>
+  </ion-item>
+
+  <ion-segment color="primary" [(ngModel)]="type" (ionChange)="segmentChanged($event)" scrollable>
+    <ion-segment-button value="records" checked>
+      <ion-label>Records</ion-label>
+      <ion-icon name="ribbon-outline"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="tourneys">
+      <ion-label>Torneos</ion-label>
+      <ion-icon name="trophy-outline"></ion-icon>
+    </ion-segment-button>
+  </ion-segment>
+
+
+  <div [ngSwitch]="type">
+    <ion-list *ngSwitchCase="'records'">
+
+      <!-- 2x2 -->
+      <ion-card *ngIf="s2x2[0].time != 0">
+        <ion-grid>
+          <ion-row style="text-align:center;" class="ion-align-items-center">
+            <ion-col width="4">
+              <img src="assets/img/2x2.png">
+            </ion-col>
+            <ion-col width="3">
+              <h3>Single</h3>
+              <p>{{s2x2[0].time}}</p>
+            </ion-col>
+            <ion-col width="3">
+              <h3>Avg</h3>
+              <p>6</p>
+            </ion-col>
+            <ion-col width="2">
+              <h3>ER</h3>
+              <p>1</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+
+      <!-- 3x3 -->
+      <ion-card *ngIf="s3x3[0].time != 0">
+        <ion-grid>
+          <ion-row style="text-align:center;" class="ion-align-items-center">
+            <ion-col width="4">
+              <img src="assets/img/3x3.png">
+            </ion-col>
+            <ion-col width="3">
+              <h3>Single</h3>
+              <p>{{s3x3[0].time}}</p>
+            </ion-col>
+            <ion-col width="3">
+              <h3>Avg</h3>
+              <p>11</p>
+            </ion-col>
+            <ion-col width="2">
+              <h3>ER</h3>
+              <p>1</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+
+      <!-- 4x4 -->
+      <ion-card *ngIf="s4x4[0].time != 0">
+        <ion-grid>
+          <ion-row style="text-align:center;" class="ion-align-items-center">
+            <ion-col width="4">
+              <img src="assets/img/4x4.png">
+            </ion-col>
+            <ion-col width="3">
+              <h3>Single</h3>
+              <p>{{s4x4[0].time}}</p>
+            </ion-col>
+            <ion-col width="3">
+              <h3>Avg</h3>
+              <p>45</p>
+            </ion-col>
+            <ion-col width="2">
+              <h3>ER</h3>
+              <p>1</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+
+      <!-- 5x5 -->
+      <ion-card *ngIf="s5x5[0].time != 0">
+        <ion-grid>
+          <ion-row style="text-align:center;" class="ion-align-items-center">
+            <ion-col width="4">
+              <img src="assets/img/5x5.png">
+            </ion-col>
+            <ion-col width="3">
+              <h3>Single</h3>
+              <p>{{s5x5[0].time}}</p>
+            </ion-col>
+            <ion-col width="3">
+              <h3>Avg</h3>
+              <p>1:20</p>
+            </ion-col>
+            <ion-col width="2">
+              <h3>ER</h3>
+              <p>1</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+
+      <!-- 6x6 -->
+      <ion-card *ngIf="s6x6[0].time != 0">
+        <ion-grid>
+          <ion-row style="text-align:center;" class="ion-align-items-center">
+            <ion-col width="4">
+              <img src="assets/img/6x6.png">
+            </ion-col>
+            <ion-col width="3">
+              <h3>Single</h3>
+              <p>{{s6x6[0].time}}</p>
+            </ion-col>
+            <ion-col width="3">
+              <h3>Avg</h3>
+              <p>2:30</p>
+            </ion-col>
+            <ion-col width="2">
+              <h3>ER</h3>
+              <p>1</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+
+      <!-- 7x7 -->
+      <ion-card *ngIf="s7x7[0].time != 0">
+        <ion-grid>
+          <ion-row style="text-align:center;" class="ion-align-items-center">
+            <ion-col width="4">
+              <img src="assets/img/7x7.png">
+            </ion-col>
+            <ion-col width="3">
+              <h3>Single</h3>
+              <p>{{s7x7[0].time}}</p>
+            </ion-col>
+            <ion-col width="3">
+              <h3>Avg</h3>
+              <p>4:00</p>
+            </ion-col>
+            <ion-col width="2">
+              <h3>ER</h3>
+              <p>1</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+
+      <!-- Megaminx -->
+      <ion-card *ngIf="smega[0].time != 0">
+        <ion-grid>
+          <ion-row style="text-align:center;" class="ion-align-items-center">
+            <ion-col width="4">
+              <img src="assets/img/megaminx.png">
+            </ion-col>
+            <ion-col width="3">
+              <h3>Single</h3>
+              <p>{{smega[0].time}}</p>
+            </ion-col>
+            <ion-col width="3">
+              <h3>Avg</h3>
+              <p>1:20</p>
+            </ion-col>
+            <ion-col width="2">
+              <h3>ER</h3>
+              <p>1</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+
+      <!-- Pyraminx -->
+      <ion-card *ngIf="spyra[0].time != 0">
+        <ion-grid>
+          <ion-row style="text-align:center;" class="ion-align-items-center">
+            <ion-col width="4">
+              <img src="assets/img/pyraminx.png">
+            </ion-col>
+            <ion-col width="3">
+              <h3>Single</h3>
+              <p>{{spyra[0].time}}</p>
+            </ion-col>
+            <ion-col width="3">
+              <h3>Avg</h3>
+              <p>20</p>
+            </ion-col>
+            <ion-col width="2">
+              <h3>ER</h3>
+              <p>1</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+
+      <!-- Skewb -->
+      <ion-card *ngIf="sskewb[0].time != 0">
+        <ion-grid>
+          <ion-row style="text-align:center;" class="ion-align-items-center">
+            <ion-col width="4">
+              <img src="assets/img/skewb.png">
+            </ion-col>
+            <ion-col width="3">
+              <h3>Single</h3>
+              <p>{{sskewb[0].time}}</p>
+            </ion-col>
+            <ion-col width="3">
+              <h3>Avg</h3>
+              <p>8</p>
+            </ion-col>
+            <ion-col width="2">
+              <h3>ER</h3>
+              <p>1</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+
+      <!-- Square-1 -->
+      <ion-card *ngIf="ssq1[0].time != 0">
+        <ion-grid>
+          <ion-row style="text-align:center;" class="ion-align-items-center">
+            <ion-col width="4">
+              <img src="assets/img/square.png">
+            </ion-col>
+            <ion-col width="3">
+              <h3>Single</h3>
+              <p>{{ssq1[0].time}}</p>
+            </ion-col>
+            <ion-col width="3">
+              <h3>Avg</h3>
+              <p>30</p>
+            </ion-col>
+            <ion-col width="2">
+              <h3>ER</h3>
+              <p>1</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'tourneys'">
+      <ion-card>
+        <img src="assets/img/background3.jpg" />
+        <ion-card-header>
+          <ion-card-subtitle>Monterrey, N.L.</ion-card-subtitle>
+          <ion-card-title>Metropolitano 2017</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          Primer torneo en Nuevo Leon.
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+
+  </div>
 
 </ion-content>
