@@ -5,6 +5,7 @@ interface Scramble {
 }
 
 interface User {
+  id: number;
   birthday: string;
   cityId: number;
   email: string;
@@ -34,4 +35,14 @@ interface City {
   name: '';
 }
 
-
+interface Solve {
+  id: number;
+  cube:	string;
+  date:	string;
+  dnf:	boolean;
+  plus2:	boolean;
+  scramble:	string;
+  time:	number;
+  timeStr: string;
+  userId:	number;
+}
