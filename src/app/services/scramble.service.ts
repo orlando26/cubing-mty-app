@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ScrambleService {
-  private uri = 'http://localhost:8080/api/v1/scramble/';
+  private uri = 'http://ec2-3-93-216-228.compute-1.amazonaws.com:8080/api/v1/scramble/';
 
   constructor(private http: HttpClient) { }
 

@@ -10,7 +10,7 @@ import { SolvesService } from 'src/app/services/solves.service';
 export class AccountPage implements OnInit {
 
   type: string;
-  selecteduserId = 2;
+  selecteduserId = this.userApi.currentUser.id;
   selectedcube = "3x3x3";
 
   user: User = {

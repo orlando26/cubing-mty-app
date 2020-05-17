@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CatalogsService {
 
-  private uri = 'http://localhost:8080/catalog/';
+  private uri = 'http://ec2-3-93-216-228.compute-1.amazonaws.com:8080/catalog/';
 
 
   constructor(private http: HttpClient) { }

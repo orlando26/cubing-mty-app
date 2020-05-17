@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UserService {
-  private uri = 'http://localhost:8080/api/v1/user/';
+  private uri = 'http://ec2-3-93-216-228.compute-1.amazonaws.com:8080/api/v1/user/';
 
   public currentUser: User = {
     id: 1,
