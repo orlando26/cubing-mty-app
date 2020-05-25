@@ -58,10 +58,14 @@ export class UserService {
         if(this.response.status === 'SUCCESS') {
           this.currentUser = this.response.entity;
           this.router.navigateByUrl('/home');
-        }else {
+        } else {
           this.toastService.simpleToast(this.response.responsetext);
         }
       }
     );
+  }
+
+  uploadUserImg(userId: number, formData: FormData): void {
+    this.http.post<boolean>(this.uri + userId + '/uploadImg', formData).subscribe();
   }
 }

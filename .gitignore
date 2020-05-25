@@ -11,6 +11,7 @@
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
+.angulardoc.json
 $RECYCLE.BIN/
 
 *.log

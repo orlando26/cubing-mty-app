@@ -77,6 +77,19 @@
 
             <ion-row>
                 <ion-col>
+                    <ion-item class="signup_entry" color="transparent" lines="none" (click)="selectPhoto()">
+                        <ion-avatar slot="start">
+                          <img [src]="myPhoto">
+                        </ion-avatar>
+                        <ion-label style="color: rgb(153, 153, 153);">
+                          Elige imagen
+                        </ion-label>
+                      </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col>
                     <ion-button class="signup_btn" shape="rectangle" expand="block" style="height: 6vh;" (click)="getSignUpForm()">ENVIAR</ion-button>
                 </ion-col>
             </ion-row>
