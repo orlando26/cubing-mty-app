@@ -20,7 +20,7 @@ export class ToastService {
   async coolToast(msg) {
     const toast = await this.toastController.create({
       message: msg,
-      position: 'top',
+      position: 'middle',
       buttons: [
         {
           side: 'start',

@@ -1,15 +1,154 @@
-.green-bg{
-    --background: var(--ion-color-success);
+$font-xlarge: 4.5em;
+$font-large: 3.5em;
+$font-medium: 1.2em;
+$font-small: 1em;
+$font-xsmall: 0.9em;
+ion-content {
+    --background: var(--ion-color-dark-tint);
+    --overflow: hidden;
 }
 
-.red-bg{
-    --background: var(--ion-color-danger);
+.center-horizontally {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.yellow-bg{
-    --background: var(--ion-color-warning);
+.stretch-vertically {
+    margin-top: -0.5em;
+    height: 2em;
 }
 
-.white-bg{
-    background-color: white;
+ion-select {
+    // Stretch cubes/tourneys selectors to content
+    min-width: 3em;
+    max-width: 50em;
+    font-weight: bold;
+    font-size: $font-medium;
+}
+
+.select-tourney {
+    font-size: $font-small;
+}
+
+.header-fab {
+    @extend .center-horizontally;
+    position: absolute;
+    height: auto;
+    width: 100%;
+    height: auto;
+    top: 0;
+}
+
+.header-card {
+    @extend .center-horizontally;
+    margin: 0;
+    position: absolute;
+    top: 1vh;
+    width: 95%;
+    height: auto;
+    background-color: var(--ion-color-dark);
+}
+
+.timing-area {
+    @extend .center-horizontally;
+    height: 100%;
+}
+
+ion-card.penalties {
+    @extend .center-horizontally;
+    position: absolute;
+    margin: 0;
+    top: 50vh;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.reload-button {
+    color: var(--ion-color-light-shade);
+    position: absolute;
+    top: 2em;
+    right: 5%;
+    font-size: $font-medium;
+}
+
+ion-fab-button {
+    width: 3em;
+    height: 2em;
+    font-size: $font-small;
+    --box-shadow: none !important;
+    font-weight: bold;
+    ion-icon {
+        font-size: $font-medium;
+    }
+}
+
+.delete-button {
+    @extend ion-fab-button;
+    --color: var(--ion-color-light-shade);
+    --background: none;
+    --background-activated: none;
+}
+
+.penalty-true {
+    @extend ion-fab-button;
+    --color: var(--ion-color-light);
+    --background: var(--ion-color-dark-shade);
+    --background-activated: var(--ion-color-dark-shade);
+}
+
+.penalty-false {
+    @extend ion-fab-button;
+    --background: none;
+    --background-activated: none;
+    --color: var(--ion-color-medium);
+}
+
+.scramble {
+    margin: 0;
+    top: 5em;
+    min-width: auto;
+    max-width: 90%;
+    height: auto;
+    text-align: center;
+    box-shadow: none;
+    color: var(--ion-color-light);
+    background-color: transparent;
+    font-size: $font-medium;
+}
+
+.time-normal {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size: $font-large;
+    color: var(--ion-color-light);
+}
+
+.time-ready {
+    @extend .time-normal;
+    font-size: $font-xlarge;
+    color: var(--ion-color-success);
+}
+
+.time-notReady {
+    @extend .time-normal;
+    color: var(--ion-color-danger);
+}
+
+.time-running {
+    @extend .time-normal;
+    font-size: $font-xlarge;
+}
+
+.stats {
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    color: var(--ion-color-light);
+    font-size: $font-xsmall;
+    font-family: var();
 }

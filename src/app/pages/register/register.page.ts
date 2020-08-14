@@ -55,7 +55,7 @@ export class RegisterPage implements OnInit {
   }
 
   ionViewWillEnter() {
-   this.catatalogsApi.getStates().subscribe(
+   this.catalogsApi.getStates().subscribe(
      res => {
        this.states = res;
      }
@@ -93,7 +93,7 @@ export class RegisterPage implements OnInit {
 
   updateCitySelect() {
     console.log('change');
-    this.catatalogsApi.getCitiesByState(this.user.stateId).subscribe(
+    this.catalogsApi.getCitiesByState(this.user.stateId).subscribe(
       res => {
         this.cities = res;
       }

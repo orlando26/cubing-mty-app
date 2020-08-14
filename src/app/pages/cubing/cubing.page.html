@@ -1,48 +1,74 @@
-<ion-header  class="ion-no-border">
-  <ion-toolbar color="dark">
-    <ion-item color="dark">
-      <ion-label>Cube</ion-label>
-      <ion-select (ionChange)="nextScramble()" [(ngModel)]="selectedCube"  placeholder="3x3x3"> 
-        <ion-select-option *ngFor="let cube of cubesList"  [value]="cube">{{cube}}</ion-select-option>
-      </ion-select>
-    </ion-item>
-  </ion-toolbar>
-</ion-header>
+<ion-content name="timing-area" (touchstart)="onTouchArea()" (touchend)="onReleaseArea()">
 
-<ion-content style='--background:var(--my-var)' (click)="stopTimer()" (press)="ready()" (pressup)="startTimer()">
+    <div class="timing-area">
+        <ion-grid>
+            <ion-row>
+                <h1 class="time-normal">{{time}}</h1>
+            </ion-row>
+        </ion-grid>
+    </div>
 
-  <div  style="margin: auto;margin-top: 15vh; width: 80%;text-align: center;color: var(--ion-color-light);">
-    <h1 style="font-size: 2.5em;">{{time}}</h1>
-    <span>{{scramble.rawSequence}}</span>
+    <ion-toolbar class="stats" color="transparent" [hidden]="hideComponents">
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <pre style="text-align: start">{{statsLeft}}</pre>
+                </ion-col>
+                <ion-col>
+                    <pre style="text-align: end">{{statsRight}}</pre>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-toolbar>
 
-    <br>
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-button color="dark">+2</ion-button>
-        </ion-col>
-        <ion-col>
-          <ion-button color="dark">DNF</ion-button>
-        </ion-col>
-        <ion-col>
-          <ion-button color="dark">Delete</ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
 </ion-content>
 
-<ion-footer style="font-size: small;">
-  <ion-toolbar color="dark">
-    <ion-grid >
-      <ion-row>
-        <ion-col>
-          <pre style="text-align: start;">{{text1}}</pre>
-        </ion-col>
-        <ion-col>
-          <pre style="text-align: end;">{{text2}}</pre>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-toolbar>
-</ion-footer>
+<ion-fab class="header-fab" [hidden]="hideComponents">
+    <ion-card class="header-card">
+        <ion-grid>
+            <ion-row>
+                <ion-col class="center-horizontally">
+                    <ion-item class="stretch-vertically" color="dark" lines="none">
+                        <ion-select id="cube-selector" placeholder="Categoría" (ionChange)="nextScramble()" [(ngModel)]="selectedCube">
+                            <ion-select-option *ngFor="let cube of cubesList" [value]="cube">{{cube}}</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col class="center-horizontally">
+                    <ion-item class="stretch-vertically" color="dark" lines="none">
+                        <ion-select class="select-tourney" placeholder="Torneo" [(ngModel)]="selectedTourney">
+                            <ion-select-option *ngFor="let tourney of tourneysList" [value]="tourney.name">{{tourney.name}}</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-card>
+
+    <ion-card name="timing_card" class="scramble">
+        <span>{{scramble.rawSequence}}</span>
+    </ion-card>
+
+    <ion-icon id="reload-icon" name="sync-sharp" class="reload-button" (click)="nextScramble(this)"></ion-icon>
+
+    <ion-card class="penalties">
+        <ion-grid>
+            <ion-row>
+                <ion-col name="timing_col">
+                    <ion-fab-button (click)="deleteSolve()" [ngClass]="{'penalty-false': !delete,'delete-button': delete}" shape="round">
+                        <ion-icon name="trash"></ion-icon>
+                    </ion-fab-button>
+                </ion-col>
+                <ion-col>
+                    <ion-fab-button (click)="dnfSolve()" class="penalty" [ngClass]="{'penalty-false': !solve.dnf,'penalty-true': solve.dnf}" shape="round">DNF</ion-fab-button>
+                </ion-col>
+                <ion-col>
+                    <ion-fab-button (click)="plus2Solve()" class="penalty" [ngClass]="{'penalty-false': !solve.plus2,'penalty-true': solve.plus2}" shape="round">+2</ion-fab-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-card>
+</ion-fab>

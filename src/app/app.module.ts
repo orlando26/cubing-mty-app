@@ -11,6 +11,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SolveOptionsComponent } from './components/solve-options/solve-options.component';
 
+import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+
 @NgModule({
   declarations: [AppComponent, SolveOptionsComponent],
   entryComponents: [SolveOptionsComponent],
@@ -18,8 +20,9 @@ import { SolveOptionsComponent } from './components/solve-options/solve-options.
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {}
